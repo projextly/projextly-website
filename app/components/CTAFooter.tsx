@@ -1,12 +1,12 @@
+import Link from 'next/link';
+import { SOCIAL_LINKS, FOOTER_SERVICES, FOOTER_COMPANY } from '@/lib/constants';
+
 export function CTA() {
   return (
-    <section id="contact" className="relative py-24 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-cyan-950/20 to-black" />
-
-      {/* Decorative glows */}
-      <div className="absolute -top-20 -right-20 w-80 h-80 bg-cyan-500/10 rounded-full blur-[100px]" />
-      <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-cyan-400/10 rounded-full blur-[100px]" />
-
+    <section id="contact" className="relative py-24 overflow-hidden bg-[#060B12]">
+      {/* Glowing Arc */}
+      <div className="absolute -top-[50px] w-[120%] -left-[10%] h-[100px] border-b border-[#00e5ff]/20 rounded-b-[50%] shadow-[0_20px_50px_-10px_rgba(0,229,255,0.2)] pointer-events-none glowing-arc" />
+      
       <div className="relative max-w-3xl mx-auto px-4 text-center">
         <h2 className="text-3xl sm:text-5xl font-bold text-white mb-5 leading-tight">
           Ready to Build Something Amazing?
@@ -17,7 +17,7 @@ export function CTA() {
         </p>
         <a
           href="mailto:hello@projextly.com"
-          className="inline-block bg-cyan-400 text-black font-bold px-8 py-4 rounded-xl hover:bg-cyan-300 hover:scale-105 transition-all text-sm shadow-lg shadow-cyan-500/20"
+          className="btn-brainhub inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold shadow-sm hover:shadow-md transition-all text-sm"
         >
           GET STARTED TODAY →
         </a>
@@ -26,52 +26,30 @@ export function CTA() {
   );
 }
 
-const socialLinks = [
-  { label: "X", href: "#" },
-  { label: "in", href: "#" },
-  { label: "gh", href: "#" },
-  { label: "dr", href: "#" },
-];
-
-const services = [
-  { label: "Web Development", href: "/services" },
-  { label: "UI/UX Design", href: "/services" },
-  { label: "E-Commerce", href: "/services" },
-  { label: "SEO & Performance", href: "/services" },
-  { label: "Mobile-First Design", href: "/services" },
-];
-
-const companyLinks = [
-  { label: "Home", href: "/" },
-  { label: "The Company", href: "/company" },
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "Careers", href: "/careers" },
-  { label: "Contact", href: "/contact" },
-];
-
 export function Footer() {
   return (
-    <footer className="bg-black border-t border-white/5 pt-16 pb-8">
+    <footer className="bg-[#060B12] pt-16 pb-8 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Column 1 — Brand */}
           <div className="lg:col-span-2">
-            <h3 className="text-2xl font-bold text-white mb-1">
-              Projextly<span className="text-cyan-400">.</span>
-            </h3>
-            <p className="text-cyan-400 text-sm font-medium mb-4">
+            <span className="block text-2xl font-bold text-white mb-1">
+              Projextly<span className="text-[#00e5ff]">.</span>
+            </span>
+            <p className="text-[#00e5ff] text-sm font-medium mb-4">
               Web Development Agency
             </p>
-            <p className="text-gray-500 text-sm">
+            <p className="text-gray-400 text-sm">
               Bengaluru, Karnataka, India
             </p>
             <div className="flex gap-3 mt-5">
-              {socialLinks.map((social) => (
+              {SOCIAL_LINKS.map((social) => (
                 <a
                   key={social.label}
                   href={social.href}
-                  className="w-9 h-9 bg-white/5 hover:bg-cyan-400/20 rounded-full flex items-center justify-center text-gray-400 hover:text-cyan-400 transition-colors border border-white/10 text-xs font-semibold"
+                  aria-label={social.ariaLabel}
+                  className="w-9 h-9 bg-white/5 hover:bg-[#00e5ff]/10 rounded-full flex items-center justify-center text-gray-400 hover:text-[#00e5ff] transition-colors border border-white/10 text-xs font-semibold"
                 >
                   {social.label}
                 </a>
@@ -85,14 +63,14 @@ export function Footer() {
               Services
             </h4>
             <ul className="space-y-2.5">
-              {services.map((service) => (
+              {FOOTER_SERVICES.map((service) => (
                 <li key={service.label}>
-                  <a
+                  <Link
                     href={service.href}
-                    className="text-gray-500 text-sm hover:text-cyan-400 transition-colors"
+                    className="text-gray-400 text-sm hover:text-[#00e5ff] transition-colors"
                   >
                     {service.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -104,14 +82,14 @@ export function Footer() {
               Company
             </h4>
             <ul className="space-y-2.5">
-              {companyLinks.map((link) => (
+              {FOOTER_COMPANY.map((link) => (
                 <li key={link.label}>
-                  <a
+                  <Link
                     href={link.href}
-                    className="text-gray-500 text-sm hover:text-cyan-400 transition-colors"
+                    className="text-gray-400 text-sm hover:text-[#00e5ff] transition-colors"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -119,23 +97,23 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-gray-600 text-xs">
+        <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-gray-400 text-xs">
             © 2026 Projextly. All rights reserved.
           </p>
           <div className="flex gap-5">
-            <a
+            <Link
               href="#"
-              className="text-gray-600 text-xs hover:text-cyan-400 transition-colors"
+              className="text-gray-400 text-xs hover:text-[#00e5ff] transition-colors"
             >
               Privacy Policy
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
-              className="text-gray-600 text-xs hover:text-cyan-400 transition-colors"
+              className="text-gray-400 text-xs hover:text-[#00e5ff] transition-colors"
             >
               Terms of Service
-            </a>
+            </Link>
           </div>
         </div>
       </div>

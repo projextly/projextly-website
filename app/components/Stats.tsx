@@ -1,28 +1,21 @@
-import { Briefcase, Users, Zap, ThumbsUp } from "lucide-react";
-
-const stats = [
-  { value: "50+", label: "Projects Delivered", icon: Briefcase },
-  { value: "30+", label: "Happy Clients", icon: Users },
-  { value: "3mo", label: "Of Rapid Growth", icon: Zap },
-  { value: "99%", label: "Client Satisfaction", icon: ThumbsUp },
-];
+import { STATS } from "@/lib/constants";
 
 export default function Stats() {
   return (
-    <section className="bg-black py-20 relative overflow-hidden">
+    <section className="bg-gray-50 py-20 relative overflow-hidden">
       {/* Dot pattern background */}
-      <div className="dot-pattern absolute inset-0" />
+      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <div className="text-center">
-          <p className="text-cyan-400 font-semibold text-sm uppercase tracking-widest mb-3">
+          <p className="text-teal-600 font-semibold text-sm uppercase tracking-widest mb-3">
             Welcome to Projextly
           </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
             Your Digital Growth Partner in Bengaluru
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-gray-600 max-w-2xl mx-auto">
             Born 3 months ago with a bold vision — we&apos;re a fast-growing web
             development agency crafting high-performance digital experiences.
             From startups to enterprises, we help businesses in Bengaluru and
@@ -32,18 +25,18 @@ export default function Stats() {
 
         {/* Stats Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mt-14">
-          {stats.map((stat) => {
+          {STATS.map((stat) => {
             const Icon = stat.icon;
             return (
               <div
                 key={stat.label}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center hover:border-cyan-400/30 hover:bg-white/[0.08] transition-all duration-300"
+                className="b2b-card b2b-card-hover p-6 text-center"
               >
-                <Icon className="w-6 h-6 text-cyan-400/60 mx-auto mb-3" />
-                <div className="text-4xl font-bold text-cyan-400">
+                <Icon className="w-6 h-6 text-teal-600/60 mx-auto mb-3" />
+                <div className="text-4xl font-bold text-teal-600">
                   {stat.value}
                 </div>
-                <div className="text-gray-400 text-sm mt-2">{stat.label}</div>
+                <div className="text-gray-600 text-sm mt-2">{stat.label}</div>
               </div>
             );
           })}
