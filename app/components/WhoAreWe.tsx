@@ -1,76 +1,73 @@
-import { CheckCircle2, Sparkles, MapPin } from "lucide-react";
+"use client";
+
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { ABOUT_BULLETS } from "@/lib/constants";
 
 export default function WhoAreWe() {
-
   return (
-    <section id="about" className="bg-gray-50 py-24 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left Column - Text */}
-          <div>
-            <span className="text-teal-600 font-semibold text-sm uppercase tracking-widest mb-3 inline-block">
-              About Projextly
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
-              Crafting Digital Excellence from Bengaluru
-            </h2>
-            <p className="text-gray-600 leading-relaxed mb-4">
-              Projextly is a modern web development agency based in Bengaluru,
-              India. We transform ideas into powerful digital experiences through
-              innovative design and cutting-edge technology.
-            </p>
-            <p className="text-gray-600 leading-relaxed mb-8">
-              Our team of passionate developers, designers, and strategists work
-              together to deliver solutions that not only look stunning but
-              perform exceptionally.
-            </p>
+    <section id="about" className="bg-white py-20">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        {/* Small Heading */}
+        <p className="text-sm font-medium text-red-500 mb-4">
+          Web Development Company in Bangalore
+        </p>
 
-            {/* Bullet Points */}
-            <ul className="space-y-0">
-              {ABOUT_BULLETS.map((text, i) => (
-                <li key={i} className="flex items-start gap-3 text-gray-600 text-sm mb-3">
-                  <CheckCircle2 className="w-5 h-5 text-teal-600 mt-0.5 flex-shrink-0" />
-                  <span>{text}</span>
-                </li>
-              ))}
-            </ul>
+        {/* Main Heading */}
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl md:text-5xl font-bold text-black leading-tight mb-6"
+        >
+          Projextly - Best web development company in Bangalore
+        </motion.h2>
 
-            {/* CTA */}
-            <Link
-              href="#"
-              className="inline-flex items-center gap-2 mt-8 bg-teal-600 text-white font-semibold px-6 py-3 rounded-xl hover:bg-teal-700 transition-all hover:scale-105 shadow-sm"
-            >
-              Learn More
-            </Link>
+        {/* Content */}
+        <div className="grid lg:grid-cols-[220px_1fr] gap-12">
+          {/* Left Decorative Line */}
+          <div className="hidden lg:flex justify-center pt-3">
+            <div className="h-px w-48 bg-gray-800"></div>
           </div>
 
-          {/* Right Column - Visual Card */}
-          <div className="relative flex justify-center items-center">
-            {/* Main Card */}
-            <div className="w-80 h-80 rounded-3xl bg-white border border-gray-200 flex items-center justify-center shadow-lg b2b-card">
-              <div className="flex flex-col items-center">
-                <Sparkles className="w-20 h-20 text-teal-600" />
-                <span className="text-gray-900 font-bold text-lg mt-4">
-                  Digital Excellence
+          {/* Right Content */}
+          <div>
+            <p className="text-lg text-start leading-6 sm:leading-8 text-gray-700 mb-6 sm:mb-8">
+              Welcome to <strong>Projextly</strong>, a leading website
+              development company in Bangalore. We offer unique and creative
+              web development services that have higher engagement rates at
+              affordable prices. Whether it's e-business strategies, website
+              development, web design, or web application development, we've
+              got you covered.
+            </p>
+
+            <p className="text-lg leading-6 sm:leading-8 text-gray-700 mb-8">
+              Our experienced team understands your business needs and creates
+              visually appealing and functional websites. We stay updated with
+              the latest technologies to optimize your website for search
+              engines and ensure a great user experience. With our expertise,
+              we can help your business grow online.
+            </p>
+
+            {/* Buttons */}
+            <div className="flex flex-wrap items-center gap-8">
+              {/* <Link
+                href="/projects"
+                className="rounded-full bg-red-500 px-10 py-5 text-lg font-semibold text-white transition hover:bg-red-600"
+              >
+                Explore our projects
+              </Link> */}
+
+              <Link
+                href="/contact"
+                className="group flex items-center gap-4 text-xl font-medium text-black"
+              >
+                {/* <span className="h-3 w-3 rounded-full border border-gray-500"></span> */}
+
+                <span className="border-b border-black pb-1 group-hover:text-red-500 group-hover:border-red-500 transition">
+                  Get in touch
                 </span>
-                <span className="text-gray-500 text-sm mt-1">Since March 2026</span>
-              </div>
-            </div>
-
-            {/* Floating Badge - Years of Impact */}
-            <div className="absolute -bottom-4 -left-4 bg-teal-600 text-white rounded-xl px-5 py-3 shadow-xl">
-              <div className="font-extrabold text-2xl">3mo</div>
-              <div className="text-teal-50 text-xs">Of Rapid Growth</div>
-            </div>
-
-            {/* Floating Badge - Bengaluru */}
-            <div className="absolute -top-3 -right-3 bg-white border border-gray-200 rounded-2xl px-4 py-2 shadow-md">
-              <span className="flex items-center gap-1 text-teal-600 text-sm font-medium">
-                <MapPin className="w-4 h-4 inline" />
-                Bengaluru
-              </span>
+              </Link>
             </div>
           </div>
         </div>

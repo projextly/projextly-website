@@ -1,60 +1,100 @@
+"use client";
 
+import { motion, useTransform, useScroll } from "framer-motion";
+import { useRef } from "react";
 import { PROCESS_STEPS } from "@/lib/constants";
 
 export default function OurProcess() {
   return (
-    <section id="process" className="bg-white py-24 relative overflow-hidden">
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Heading */}
-        <p className="text-[#00b8cc] font-semibold text-sm uppercase tracking-widest mb-3 text-center">
-          How We Work
-        </p>
-        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-4">
-          Our Process
+    <div className="bg-[#FFF8F9]">
+      <div className="flex h-48 flex-col items-center justify-center pt-24 pb-12">
+        <h2 className="text-4xl md:text-5xl text-black tracking-tight">
+          Our website development process
         </h2>
-        <p className="text-gray-600 text-center max-w-2xl mx-auto mb-16">
-          A proven, transparent workflow that takes your project from idea to
-          launch — and beyond.
-        </p>
-
-        {/* Steps */}
-        <div className="relative">
-          {/* Connecting line (desktop) */}
-          <div className="hidden lg:block absolute top-[60px] left-[10%] right-[10%] h-px bg-gray-200" />
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-6">
-            {PROCESS_STEPS.map((s) => {
-              const Icon = s.icon;
-              return (
-                <div
-                  key={s.step}
-                  className="relative flex flex-col items-center text-center group"
-                >
-                  {/* Step number */}
-                  <div className="relative z-10 w-[72px] h-[72px] rounded-2xl bg-white border border-gray-200 flex items-center justify-center mb-5 group-hover:border-[#00b8cc] group-hover:shadow-lg transition-all duration-300">
-                    <Icon className="w-7 h-7 text-[#00b8cc]" />
-                  </div>
-
-                  {/* Step badge */}
-                  <span className="text-[#00b8cc]/60 text-xs font-bold tracking-widest mb-2">
-                    STEP {s.step}
-                  </span>
-
-                  {/* Title */}
-                  <h3 className="text-gray-900 font-bold text-base mb-2 group-hover:text-[#00b8cc] transition-colors">
-                    {s.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-gray-600 text-sm leading-relaxed max-w-[240px]">
-                    {s.desc}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
       </div>
-    </section>
+      <HorizontalScrollTimeline />
+    </div>
   );
 }
+
+const HorizontalScrollTimeline = () => {
+  const targetRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+  });
+
+  // Scroll distance scales with item count instead of a hardcoded magic number,
+  // so this keeps working if PROCESS_STEPS grows or shrinks.
+  const itemCount = PROCESS_STEPS.length;
+  // const travelPercent = ((itemCount - 1) / itemCount) * 100;
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", `-65%`]);
+
+  return (
+    <>
+      {/* Mobile & Tablet: Vertical Stack */}
+      {/* <div className="md:hidden flex flex-col items-center gap-16 px-4 pb-24">
+        {PROCESS_STEPS.map((step, index) => (
+          <div key={index} className="flex flex-col items-center text-center max-w-sm relative">
+            {index !== PROCESS_STEPS.length - 1 && (
+              <div className="absolute top-[180px] bottom-[-64px] left-1/2 w-[1px] bg-black/20" />
+            )}
+
+            <div className="w-48 h-48 rounded-full bg-[#1A1A1A] flex items-center justify-center z-10 shadow-2xl">
+              <h3 className="text-white text-xl font-medium tracking-wide">
+                {step.title}
+              </h3>
+            </div>
+
+            <div className="h-10 w-[1px] bg-black/50 z-10" />
+
+            <p className="text-sm text-gray-800 leading-relaxed font-medium z-10 px-4">
+              {step.desc}
+            </p>
+          </div>
+        ))}
+      </div> */}
+
+      {/* Desktop: Horizontal Scrolling Timeline */}
+      <section ref={targetRef} className="relative h-[200vh] bg-[#FFF8F9]">
+        <div className="sticky top-0 flex h-[100vh] items-stretch overflow-hidden">
+          {/* Continuous horizontal line in the background */}
+          <div className="absolute top-[35%] left-64 right-0 h-[1px] bg-black pointer-events-none" />
+
+          <motion.div style={{ x }} className="flex h-full px-[8vw]">
+            {PROCESS_STEPS.map((step, index) => (
+              <TimelineCard step={step} key={index} />
+            ))}
+          </motion.div>
+        </div>
+      </section>
+    </>
+  );
+};
+
+const TimelineCard = ({ step }: { step: (typeof PROCESS_STEPS)[0] }) => {
+  return (
+    <div className="relative h-full w-[550px] shrink-0">
+      {/* Circle: center is pinned to the same top-[35%] line the background uses */}
+      <div
+        className="absolute top-[35%] left-1/2 -translate-x-1/2 -translate-y-1/2
+                   w-58 h-58 rounded-full bg-[#1A1A1A] flex items-center justify-center
+                   z-10 hover:scale-105 transition-transform duration-300 shadow-xl"
+      >
+        <h3 className="text-white text-2xl font-medium tracking-wide text-center px-4">
+          {step.title}
+        </h3>
+      </div>
+
+      {/* Connector line + description hang off the circle's bottom edge (96px = half of 192px circle) */}
+      <div
+        className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center"
+        style={{ top: "calc(35% + 96px)" }}
+      >
+        <div className="h-16 w-[1px] bg-black" />
+        <p className="text-sm text-gray-800 leading-relaxed font-medium text-center px-6 mt-4 max-w-[280px]">
+          {step.desc}
+        </p>
+      </div>
+    </div>
+  );
+};

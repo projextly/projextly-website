@@ -2,20 +2,27 @@
 
 import { useState } from "react";
 import { Send, MapPin, Mail, Phone } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function ContactUs() {
   const [submitted, setSubmitted] = useState(false);
 
   return (
-    <section id="contact" className="relative py-24 overflow-hidden bg-gray-50">
+    <section id="contact" className="relative py-24 overflow-hidden section-light">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
-        <p className="text-teal-600 font-semibold text-sm uppercase tracking-widest mb-3 text-center">
+        <p className="text-[#34D399] font-semibold text-sm uppercase tracking-widest mb-3 text-center">
           Get In Touch
         </p>
-        <h2 className="text-3xl sm:text-5xl font-bold text-gray-900 text-center mb-4 leading-tight">
+        <motion.h2 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl sm:text-5xl font-bold text-gray-900 text-center mb-4 leading-tight"
+        >
           Ready to Build Something Amazing?
-        </h2>
+        </motion.h2>
         <p className="text-gray-600 text-center max-w-xl mx-auto mb-16">
           Let&apos;s turn your vision into a stunning digital reality. Get in touch
           for a free consultation and project estimate.
@@ -23,11 +30,17 @@ export default function ContactUs() {
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
           {/* Left — Contact Info */}
-          <div className="lg:col-span-2 space-y-8">
-            <div className="b2b-card p-6">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+            className="lg:col-span-2 space-y-8"
+          >
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} className="bg-white/5 backdrop-blur-[12px] border border-white/[0.1] rounded-2xl p-6">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-5 h-5 text-teal-600" />
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-5 h-5 text-[#34D399]" />
                 </div>
                 <div>
                   <h4 className="text-gray-900 font-semibold text-sm mb-1">
@@ -40,12 +53,12 @@ export default function ContactUs() {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="b2b-card p-6">
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} className="bg-white/5 backdrop-blur-[12px] border border-white/[0.1] rounded-2xl p-6">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-5 h-5 text-teal-600" />
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center flex-shrink-0">
+                  <Mail className="w-5 h-5 text-[#34D399]" />
                 </div>
                 <div>
                   <h4 className="text-gray-900 font-semibold text-sm mb-1">
@@ -53,18 +66,18 @@ export default function ContactUs() {
                   </h4>
                   <a
                     href="mailto:hello@projextly.com"
-                    className="text-gray-600 text-sm hover:text-teal-600 transition-colors"
+                    className="text-gray-600 text-sm hover:text-[#34D399] transition-colors"
                   >
                     hello@projextly.com
                   </a>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="b2b-card p-6">
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} className="bg-white/5 backdrop-blur-[12px] border border-white/[0.1] rounded-2xl p-6">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-5 h-5 text-teal-600" />
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center flex-shrink-0">
+                  <Phone className="w-5 h-5 text-[#34D399]" />
                 </div>
                 <div>
                   <h4 className="text-gray-900 font-semibold text-sm mb-1">
@@ -72,33 +85,39 @@ export default function ContactUs() {
                   </h4>
                   <a
                     href="tel:+919876543210"
-                    className="text-gray-600 text-sm hover:text-teal-600 transition-colors"
+                    className="text-gray-600 text-sm hover:text-[#34D399] transition-colors"
                   >
                     +91 98765 43210
                   </a>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Availability badge */}
-            <div className="flex items-center gap-3 mt-4">
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} className="flex items-center gap-3 mt-4">
               <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-600 opacity-75" />
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-teal-600" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#34D399] opacity-75" />
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-[#34D399]" />
               </span>
               <span className="text-gray-600 text-sm">
                 Available for new projects
               </span>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Right — Contact Form */}
-          <div className="lg:col-span-3">
-            <div className="b2b-card p-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-3"
+          >
+            <div className="bg-white/5 backdrop-blur-[12px] border border-white/[0.1] rounded-2xl p-8">
               {submitted ? (
                 <div className="text-center py-12">
-                  <div className="w-16 h-16 rounded-full bg-teal-50 flex items-center justify-center mx-auto mb-4">
-                    <Send className="w-8 h-8 text-teal-600" />
+                  <div className="w-16 h-16 rounded-full bg-emerald-50 flex items-center justify-center mx-auto mb-4">
+                    <Send className="w-8 h-8 text-[#34D399]" />
                   </div>
                   <h3 className="text-gray-900 font-bold text-xl mb-2">
                     Message Sent!
@@ -150,7 +169,7 @@ export default function ContactUs() {
                           required
                           aria-required="true"
                           placeholder="John Doe"
-                          className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm placeholder:text-gray-400 focus:outline-none focus:border-teal-600 focus:ring-1 focus:ring-teal-600/20 transition-all"
+                          className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm placeholder:text-gray-400 focus:outline-none focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399]/20 transition-all"
                         />
                       </div>
                       <div>
@@ -164,7 +183,7 @@ export default function ContactUs() {
                           required
                           aria-required="true"
                           placeholder="john@example.com"
-                          className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm placeholder:text-gray-400 focus:outline-none focus:border-teal-600 focus:ring-1 focus:ring-teal-600/20 transition-all"
+                          className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm placeholder:text-gray-400 focus:outline-none focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399]/20 transition-all"
                         />
                       </div>
                     </div>
@@ -173,7 +192,7 @@ export default function ContactUs() {
                       <label htmlFor="contact-project-type" className="block text-gray-700 text-sm font-medium mb-2">
                         Project Type
                       </label>
-                      <select id="contact-project-type" name="projectType" className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm focus:outline-none focus:border-teal-600 focus:ring-1 focus:ring-teal-600/20 transition-all appearance-none cursor-pointer">
+                      <select id="contact-project-type" name="projectType" className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm focus:outline-none focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399]/20 transition-all appearance-none cursor-pointer">
                         <option value="">Select a service</option>
                         <option value="web">Website Development</option>
                         <option value="app">Web Application</option>
@@ -188,7 +207,7 @@ export default function ContactUs() {
                       <label htmlFor="contact-budget" className="block text-gray-700 text-sm font-medium mb-2">
                         Budget Range
                       </label>
-                      <select id="contact-budget" name="budget" className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm focus:outline-none focus:border-teal-600 focus:ring-1 focus:ring-teal-600/20 transition-all appearance-none cursor-pointer">
+                      <select id="contact-budget" name="budget" className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm focus:outline-none focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399]/20 transition-all appearance-none cursor-pointer">
                         <option value="">Select budget range</option>
                         <option value="10k-25k">₹10,000 – ₹25,000</option>
                         <option value="25k-50k">₹25,000 – ₹50,000</option>
@@ -209,13 +228,13 @@ export default function ContactUs() {
                         required
                         aria-required="true"
                         placeholder="Describe your project, goals, and timeline..."
-                        className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm placeholder:text-gray-400 focus:outline-none focus:border-teal-600 focus:ring-1 focus:ring-teal-600/20 transition-all resize-none"
+                        className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm placeholder:text-gray-400 focus:outline-none focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399]/20 transition-all resize-none"
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="btn-brainhub w-full py-4 rounded-xl text-sm flex items-center justify-center gap-2"
+                      className="bg-[#34D399] text-white hover:bg-[#059669] transition-colors w-full py-4 rounded-xl text-sm flex items-center justify-center gap-2"
                     >
                       <Send className="w-4 h-4" />
                       Send Message
@@ -223,7 +242,7 @@ export default function ContactUs() {
                   </form>
               )}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

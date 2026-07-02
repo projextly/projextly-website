@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu } from "lucide-react";
+import { Menu, ArrowRight } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -11,6 +11,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const navLinks = [
   { label: "Services", href: "/services" },
@@ -25,10 +26,16 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-5 z-40 w-[90%] md:w-[70%] lg:w-[75%] lg:max-w-7xl mx-auto ">
-      <nav className="flex items-center justify-between px-6 py-3 bg-[#060B12]/90 backdrop-blur-xl border-b border-white/10 rounded-2xl shadow-sm">
+      <nav className="flex items-center justify-between px-6 py-3 bg-black/50 backdrop-blur-[20px] border-[1.5px] border-white/10 rounded-full shadow-sm p-[1.5px]">
         {/* Brand */}
         <Link href="/" className="text-xl font-bold text-white tracking-tight">
-          Projextly<span className="text-teal-500">.</span>
+         <Image 
+          src="/projextly-logo.png"
+          alt="Projextly Logo"
+          width={120}
+          height={40}
+          priority
+         />
         </Link>
 
         {/* Desktop Links */}
@@ -37,7 +44,7 @@ export default function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="text-sm text-gray-300 hover:text-white transition-colors duration-200"
+                className="text-sm text-white/80 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-colors duration-200"
               >
                 {link.label}
               </Link>
@@ -47,8 +54,11 @@ export default function Navbar() {
 
         {/* Desktop CTA */}
         <Link href="/contact" className="hidden md:block">
-          <Button className="btn-brainhub">
-            Start Project
+          <Button className="btn-primary group">
+            <span className="text-sm">Start Project</span>
+            <div className="icon-circle">
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </div>
           </Button>
         </Link>
 
@@ -69,7 +79,7 @@ export default function Navbar() {
             >
               <SheetHeader>
                 <SheetTitle className="text-white text-lg font-bold tracking-tight">
-                  Projextly<span className="text-teal-500">.</span>
+                  Projextly<span className="text-[#34D399]">.</span>
                 </SheetTitle>
               </SheetHeader>
 
@@ -88,10 +98,13 @@ export default function Navbar() {
                 <Link
                   href="/contact"
                   onClick={() => setOpen(false)}
-                  className="mt-4"
+                  className="mt-4 flex"
                 >
-                  <Button className="btn-brainhub w-full">
-                    Start Project
+                  <Button className="btn-primary group w-full flex justify-between items-center gap-2 bg-amber-50">
+                    <span className="text-sm">Start Project</span>
+                    <div className="icon-circle">
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                    </div>
                   </Button>
                 </Link>
               </div>

@@ -82,9 +82,9 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <body className="min-h-full flex flex-col bg-[#060B12] text-white">
         <SmoothScrollProvider>
-          <a href="#main-content" className="skip-link">
+          {/* <a href="#main-content" className="skip-link">
             Skip to main content
-          </a>
+          </a> */}
           <Navbar />
           <div id="main-content">{children}</div>
           <script

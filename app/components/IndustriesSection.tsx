@@ -72,7 +72,7 @@ export default function Industries() {
 
         <span className="text-red-500 text-lg">Industries</span>
 
-        <h2 className="mt-2 text-5xl md:text-6xl font-semibold tracking-tight text-black">
+        <h2 className="mt-2 text-5xl md:text-6xl font-semibold tracking-tight">
           Industries we serve
         </h2>
 

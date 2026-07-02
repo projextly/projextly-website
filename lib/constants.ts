@@ -24,6 +24,10 @@ import {
   Star,
 } from "lucide-react";
 
+import { FaXTwitter } from "react-icons/fa6";
+import { BsLinkedin } from "react-icons/bs";
+import { FaInstagram } from "react-icons/fa";
+
 /* ============================================================
    SITE-WIDE CONSTANTS
    All hardcoded data extracted for single-source-of-truth
@@ -111,32 +115,50 @@ export interface ProcessStep {
 export const PROCESS_STEPS: ProcessStep[] = [
   {
     step: "01",
-    title: "Discovery",
-    desc: "We start by understanding your business, goals, audience, and competitive landscape through in-depth consultation.",
+    title: "Discussion",
+    desc: "In order to gather website requirements, we schedule a detailed interaction with the client.",
     icon: Lightbulb,
   },
   {
     step: "02",
-    title: "Design",
-    desc: "Our designers create stunning wireframes and high-fidelity prototypes that align perfectly with your brand identity.",
+    title: "Sketch",
+    desc: "A layout is designed as a prototype to meet the specified requirements of the client.",
     icon: PenTool,
   },
   {
     step: "03",
-    title: "Development",
-    desc: "We build your product using modern technologies, clean code practices, and performance-first engineering.",
+    title: "Approval",
+    desc: "A final layout is designed based on the prototype and will be sent for client approval.",
     icon: Code,
   },
   {
     step: "04",
-    title: "Testing",
-    desc: "Rigorous QA across devices, browsers, and screen sizes ensures a flawless launch-ready product.",
+    title: "Web Design",
+    desc: "We ensure that the design is in line with the requirements and specifications provided.",
     icon: TestTube2,
   },
   {
     step: "05",
-    title: "Launch & Support",
-    desc: "We deploy your project and provide ongoing support, monitoring, and optimization post-launch.",
+    title: "Graphic Design",
+    desc: "Creating visually appealing infographics for vibrant website for enhanced UI.",
+    icon: Rocket,
+  },
+  {
+    step: "06",
+    title: "Optimization",
+    desc: "Improving the loading speed of a website through optimization for enhanced UX.",
+    icon: Rocket,
+  },
+  {
+    step: "07",
+    title: "Testing",
+    desc: "We perform testing to check software functions and compatibility across platforms.",
+    icon: Rocket,
+  },
+  {
+    step: "08",
+    title: "Hosting",
+    desc: "We offer secure hosting and installation of SSL certificates for websites.",
     icon: Rocket,
   },
 ];
@@ -148,7 +170,7 @@ export interface Project {
   category: string;
   description: string;
   tech: string[];
-  gradient: string;
+  thumnail: string;
 }
 
 export const PROJECTS: Project[] = [
@@ -158,7 +180,7 @@ export const PROJECTS: Project[] = [
     description:
       "A comprehensive financial analytics dashboard with real-time data visualization, portfolio tracking, and AI-powered insights.",
     tech: ["Next.js", "TypeScript", "PostgreSQL", "Tailwind"],
-    gradient: "from-cyan-500/20 via-blue-500/10 to-transparent",
+    thumnail: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2013&auto=format&fit=crop",
   },
   {
     title: "ShopVerse",
@@ -166,7 +188,7 @@ export const PROJECTS: Project[] = [
     description:
       "A modern e-commerce platform with seamless checkout, inventory management, and multi-vendor support for 10,000+ products.",
     tech: ["React", "Node.js", "MongoDB", "Stripe"],
-    gradient: "from-emerald-500/20 via-green-500/10 to-transparent",
+    thumnail: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974&auto=format&fit=crop",
   },
   {
     title: "MediConnect",
@@ -174,7 +196,15 @@ export const PROJECTS: Project[] = [
     description:
       "A healthcare appointment and telemedicine platform connecting patients with specialists across Bengaluru and beyond.",
     tech: ["Next.js", "Supabase", "WebRTC", "Tailwind"],
-    gradient: "from-purple-500/20 via-violet-500/10 to-transparent",
+    thumnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+  },
+  {
+    title: "MediConnect",
+    category: "Healthcare",
+    description:
+      "A healthcare appointment and telemedicine platform connecting patients with specialists across Bengaluru and beyond.",
+    tech: ["Next.js", "Supabase", "WebRTC", "Tailwind"],
+    thumnail: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop",
   },
 ];
 
@@ -288,18 +318,18 @@ export const BLOG_POSTS: BlogPost[] = [
 
 export interface Client {
   name: string;
-  industry: string;
+  logo: string;
 }
 
 export const CLIENTS: Client[] = [
-  { name: "TechNova", industry: "SaaS" },
-  { name: "GreenLeaf", industry: "E-Commerce" },
-  { name: "MediCore", industry: "Healthcare" },
-  { name: "UrbanEdge", industry: "Real Estate" },
-  { name: "PayWise", industry: "FinTech" },
-  { name: "EduSpark", industry: "EdTech" },
-  { name: "CloudBase", industry: "Cloud" },
-  { name: "StyleHQ", industry: "Fashion" },
+  { name: "Supperb", logo: "/client/supperb.png" },
+  { name: "Sakara News", logo: "/client/sakara-news.png" },
+  { name: "Kannada Suddi", logo: "/client/kannada-suddi.png" },
+  // { name: "UrbanEdge", logo: "/logos/urban-edge.png" },
+  // { name: "PayWise", logo: "/logos/pay-wise.png" },
+  // { name: "EduSpark", logo: "/logos/edu-spark.png" },
+  // { name: "CloudBase", logo: "/logos/cloud-base.png" },
+  // { name: "StyleHQ", logo: "/logos/style-hq.png" },
 ];
 
 // ─── Stats ───────────────────────────────────────────────────
@@ -508,28 +538,27 @@ export interface SocialLink {
   label: string;
   ariaLabel: string;
   href: string;
+  icon: React.ComponentType;
 }
 
 export const SOCIAL_LINKS: SocialLink[] = [
   {
+    label: "Instagram",
+    ariaLabel: "Follow us on Instagram",
+    href: "https://instagram.com/projextly",
+    icon: FaInstagram,
+  }, 
+  {
     label: "X",
     ariaLabel: "Follow us on X (Twitter)",
     href: "https://x.com/projextly",
-  },
+    icon: FaXTwitter,
+  }, 
   {
-    label: "in",
+    label: "LinkedIn",
     ariaLabel: "Connect on LinkedIn",
     href: "https://linkedin.com/company/projextly",
-  },
-  {
-    label: "gh",
-    ariaLabel: "View our GitHub",
-    href: "https://github.com/projextly",
-  },
-  {
-    label: "dr",
-    ariaLabel: "View our Dribbble",
-    href: "https://dribbble.com/projextly",
+    icon: BsLinkedin,
   },
 ];
 

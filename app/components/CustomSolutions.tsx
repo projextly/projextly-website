@@ -1,95 +1,96 @@
+"use client";
+
 import { Check } from "lucide-react";
-import Link from "next/link";
 import { PRICING_PLANS } from "@/lib/constants";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function CustomSolutions() {
   return (
-    <section className="bg-gray-50 py-24">
+    <section className="section-light py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Left Column */}
-          <div className="lg:sticky lg:top-24">
-            <p className="text-[#00b8cc] font-semibold text-sm uppercase tracking-widest mb-3">
-              Flexible Packages
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 leading-tight">
-              Solutions for Every Stage of Growth
-            </h2>
-            <p className="text-gray-600 leading-relaxed">
-              Whether you are a startup launching your first product or an
-              enterprise scaling globally, we have the right package tailored to
-              your needs.
-            </p>
-            <Link
-              href="#"
-              className="btn-brainhub inline-block mt-6 px-6 py-3 rounded-xl hover:scale-105"
+        
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <p className="text-zinc-500 font-semibold text-sm uppercase tracking-widest mb-3">
+            Flexible Packages
+          </p>
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: true, margin: "-50px" }} 
+            transition={{ duration: 0.6 }}
+            className="text-4xl sm:text-5xl font-bold text-zinc-900 mb-6 leading-tight"
+          >
+            Solutions for Every Stage
+          </motion.h2>
+          <p className="text-zinc-600 text-lg">
+            Whether you are a startup launching your first product or an enterprise scaling globally, we have the right package tailored to your needs.
+          </p>
+        </div>
+
+        <motion.div 
+          initial="hidden" 
+          whileInView="visible" 
+          viewport={{ once: true, margin: "-50px" }} 
+          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
+          {PRICING_PLANS.map((plan) => (
+            <motion.div 
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
+              key={plan.tier}
+              className="bg-white rounded-[2rem] border border-zinc-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col relative group"
             >
-              Get A Custom Quote →
-            </Link>
-          </div>
+              {plan.highlight && (
+                <div className="absolute top-4 right-4 z-20 bg-zinc-900 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+                  Most Popular
+                </div>
+              )}
 
-          {/* Right Column */}
-          <div className="space-y-5">
-            {PRICING_PLANS.map((plan) => (
-              <div
-                key={plan.tier}
-                className={
-                  plan.highlight
-                    ? "relative bg-white border-2 border-[#00b8cc] rounded-2xl p-7 shadow-lg shadow-[#00b8cc]/10"
-                    : "b2b-card b2b-card-hover p-7"
-                }
-              >
-                {plan.highlight && (
-                  <span className="absolute -top-3 right-6 bg-[#00b8cc] text-white text-xs font-bold px-3 py-1 rounded-full">
-                    Most Popular
-                  </span>
-                )}
+              {/* Top half with 64px accent and gradient-to-black overlay */}
+              <div className="h-16 relative w-full bg-zinc-900 overflow-hidden">
+                {/* Abstract pattern / image placeholder */}
+                <div 
+                  className="absolute inset-0 opacity-50 bg-[url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=600')] bg-cover bg-center group-hover:scale-105 transition-transform duration-700"
+                />
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-zinc-900/90" />
+              </div>
 
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <h3
-                      className={
-                        plan.highlight
-                          ? "font-bold text-xl text-[#00b8cc]"
-                          : "font-bold text-xl text-gray-900"
-                      }
-                    >
-                      {plan.tier}
-                    </h3>
-                    <p
-                      className={
-                        plan.highlight
-                          ? "text-[#00b8cc]/80 text-sm"
-                          : "text-gray-600 text-sm"
-                      }
-                    >
-                      {plan.subtitle}
-                    </p>
-                  </div>
+              {/* Bottom half */}
+              <div className="p-6 flex flex-col flex-grow">
+                <div className="mb-6">
+                  <h3 className="text-2xl font-bold text-zinc-900 mb-1">{plan.tier}</h3>
+                  <p className="text-zinc-500 text-sm">{plan.subtitle}</p>
                 </div>
 
-                <ul className="space-y-2.5 mb-6">
+                <div className="text-3xl font-bold text-zinc-900 mb-6 pb-6 border-b border-zinc-100">
+                  {plan.price}
+                </div>
+
+                <ul className="space-y-4 mb-8 flex-grow">
                   {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-center gap-3">
-                      <Check className="w-4 h-4 text-[#00b8cc] shrink-0" />
-                      <span className="text-sm text-gray-600">{feature}</span>
+                    <li key={feature} className="flex items-start gap-3">
+                      <Check className="w-4 h-4 text-zinc-400 mt-0.5 shrink-0" />
+                      <span className="text-sm text-zinc-600 leading-relaxed">{feature}</span>
                     </li>
                   ))}
                 </ul>
 
-                <button
-                  className={
-                    plan.highlight
-                      ? "btn-brainhub w-full relative px-5 py-2.5 rounded-xl transition-all"
-                      : "border border-gray-200 text-gray-900 font-semibold px-5 py-2.5 rounded-xl hover:border-[#00b8cc]/50 hover:bg-gray-50 transition-all w-full"
-                  }
+                <button 
+                  className={`w-full py-3.5 px-6 rounded-xl font-semibold transition-all duration-300 text-sm ${
+                    plan.highlight 
+                      ? "bg-zinc-900 text-white hover:bg-zinc-800 shadow-md hover:shadow-xl hover:-translate-y-0.5" 
+                      : "bg-zinc-50 text-zinc-900 border border-zinc-200 hover:bg-zinc-100 hover:border-zinc-300"
+                  }`}
                 >
                   {plan.cta}
                 </button>
               </div>
-            ))}
-          </div>
-        </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
       </div>
     </section>
   );

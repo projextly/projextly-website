@@ -6,12 +6,14 @@
 
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --color-emerald-highlight: #34D399;
 }
 
 :root {
-  --brainhub-cyan: #00e5ff;
-  --brainhub-dark: #060B12;
-  --brainhub-card: #0a0f16;
+  --primary-dark: #000000;
+  --light-bg: #F4F4F5;
+  --zinc-accent: #18181B;
+  --emerald-highlight: #34D399;
 }
 
 /* ============================
@@ -20,14 +22,16 @@
 
 @layer base {
   body {
-    @apply bg-white text-gray-900 antialiased;
+    @apply bg-black text-gray-900 antialiased;
     letter-spacing: -0.01em;
   }
   html {
     @apply font-sans scroll-smooth;
   }
   h1, h2, h3, h4, h5, h6 {
-    letter-spacing: -0.03em;
+    letter-spacing: -0.05em;
+    line-height: 1.05;
+    font-weight: 500;
   }
 }
 
@@ -35,14 +39,14 @@
    ACCESSIBILITY — Focus Styles
    ============================ */
 
-/* Visible focus ring for keyboard navigation (all interactive elements) */
+/* Visible focus ring for keyboard navigation */
 :focus-visible {
-  @apply outline-2 outline-offset-2 outline-[#00e5ff];
+  @apply outline-2 outline-offset-2 outline-[#34D399];
 }
 
 /* Skip-to-content link */
 .skip-link {
-  @apply absolute -top-full left-4 z-[9999] bg-[#00e5ff] text-black font-bold px-6 py-3 rounded-b-lg transition-all;
+  @apply absolute -top-full left-4 z-[9999] bg-[#34D399] text-black font-bold px-6 py-3 rounded-full transition-all;
 }
 .skip-link:focus {
   @apply top-0;
@@ -52,69 +56,88 @@
    CUSTOM UTILITIES
    ============================ */
 
-/* 
-  Brainhub Cyan Button 
-  A bright cyan button with dark text — used across both dark AND light sections.
+/*
+  Interactive Action Button
 */
-.btn-brainhub {
-  @apply inline-flex items-center justify-center bg-[#00e5ff] text-black font-bold rounded-lg px-8 py-4 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(0,229,255,0.4)];
+.btn-primary {
+  @apply inline-flex items-center justify-between gap-4 bg-white text-zinc-900 font-medium rounded-full pl-6 pr-2 py-2 transition-all duration-300 hover:scale-[1.05];
 }
-.btn-brainhub:focus-visible {
-  @apply outline-2 outline-offset-2 outline-[#00e5ff] ring-2 ring-[#00e5ff]/30;
+.btn-primary .icon-circle {
+  @apply w-10 h-10 bg-zinc-900 rounded-full flex items-center justify-center text-white transition-colors duration-300;
+}
+.btn-primary:hover .icon-circle {
+  @apply bg-zinc-700;
+}
+.btn-primary:focus-visible {
+  @apply outline-2 outline-offset-2 outline-[#34D399] ring-2 ring-[#34D399]/30;
+}
+
+/*
+  Glass Stat Card
+*/
+.glass-stat-card {
+  @apply flex flex-col justify-center;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 1.25rem;
 }
 
 /* 
-  Glowing Arc Divider
-  The massive glowing curve seen at the bottom of dark sections in the screenshot.
+  Grain Overlay 
 */
-.glowing-arc {
+.grain-overlay {
+  position: relative;
+}
+.grain-overlay::before {
+  content: "";
   position: absolute;
-  bottom: 0;
-  left: -10%;
-  width: 120%;
-  height: 180px;
-  background: transparent;
-  border-top-left-radius: 50% 100%;
-  border-top-right-radius: 50% 100%;
-  box-shadow: 0 -20px 50px -10px rgba(0, 229, 255, 0.2);
-  border-top: 1px solid rgba(0, 229, 255, 0.1);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.15;
+  mix-blend-mode: overlay;
   pointer-events: none;
+  z-index: 1;
 }
 
 /* 
   Dark Section Classes 
 */
 .section-dark {
-  @apply bg-[#060B12] text-white relative;
+  @apply bg-black text-white relative overflow-hidden;
+  /* Add subtle bottom-heavy gradient */
+  background: linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
 }
 
 .card-dark {
-  @apply bg-[#0a0f16] border border-white/10 rounded-xl transition-all duration-300 hover:border-[#00e5ff]/30;
+  @apply bg-[#18181B] border border-white/10 transition-all duration-300;
 }
 
 /* 
   Light Section Classes
 */
 .section-light {
-  @apply bg-white text-gray-900;
-}
-
-.section-muted {
-  @apply bg-gray-50 text-gray-900;
-}
-
-.b2b-card {
-  @apply bg-white border border-gray-200 rounded-xl shadow-sm transition-all duration-200;
-}
-
-.b2b-card-hover:hover {
-  @apply border-[#00e5ff]/50 shadow-md -translate-y-1;
+  @apply bg-[#F4F4F5] text-zinc-900  overflow-hidden;
 }
 
 /* Keyframes for subtle animations */
-@keyframes shimmer {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Scrollbar */
@@ -122,12 +145,12 @@
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #060B12;
+  background: #000000;
 }
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background: #18181B;
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #00e5ff;
+  background: #34D399;
 }
