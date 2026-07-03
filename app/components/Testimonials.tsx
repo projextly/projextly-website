@@ -1,66 +1,68 @@
-"use client";
-
-import { Star } from "lucide-react";
-import { TESTIMONIALS } from "@/lib/constants";
-import { motion } from "framer-motion";
-
 export default function Testimonials() {
+  const testimonials = [
+    {
+      quote: "The integration was seamless. We went from zero to a fully functional AI assistant resolving 40% of our L1 support tickets in just under two weeks.",
+      author: "Sarah Jenkins",
+      role: "VP of Engineering",
+      company: "Acme Corp"
+    },
+    {
+      quote: "What impressed me most was the reasoning engine. It doesn't just regurgitate facts; it connects data points from our internal docs to provide genuinely insightful answers.",
+      author: "David Chen",
+      role: "CTO",
+      company: "Nexus Labs"
+    },
+    {
+      quote: "We replaced three disparate AI tools with this single platform. The ability to give the assistant long-term memory has completely transformed our customer experience.",
+      author: "Elena Rodriguez",
+      role: "Head of Product",
+      company: "FinTech Solutions"
+    },
+    {
+      quote: "Security was our biggest concern, but their enterprise-grade compliance and granular permission controls made it an easy sell to our infosec team.",
+      author: "Marcus Thorne",
+      role: "CISO",
+      company: "Global Healthcare"
+    }
+  ];
+
   return (
-    <section id="testimonials" className="section-dark py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p className="text-[#34D399] font-semibold text-sm uppercase tracking-widest mb-3 text-center">
-          What Clients Say
-        </p>
-        <motion.h2 
-          initial={{ opacity: 0, y: 30 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
-          viewport={{ once: true, margin: "-50px" }} 
-          transition={{ duration: 0.6 }}
-          className="text-3xl sm:text-4xl font-bold text-white text-center mb-14"
-        >
-          Trusted by Businesses Across India
-        </motion.h2>
+    <section className="bg-black py-24 w-full">
+      <div className="max-w-[1400px] mx-auto px-8">
+        <div className="text-[10px] text-gray-500 font-bold tracking-[0.2em] uppercase mb-4">
+          Testimonials
+        </div>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+          <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-white max-w-xl">
+            What our users say about<br />
+            their new AI teammate.
+          </h2>
+          <div className="flex items-center gap-4">
+            <button className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/10 transition-colors">
+              &larr;
+            </button>
+            <button className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/10 transition-colors">
+              &rarr;
+            </button>
+          </div>
+        </div>
 
-        <motion.div 
-          initial="hidden" 
-          whileInView="visible" 
-          viewport={{ once: true, margin: "-50px" }} 
-          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
-        >
-          {TESTIMONIALS.map((testimonial) => (
-            <motion.div
-              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
-              key={testimonial.name}
-              className="bg-white/5 backdrop-blur-[12px] border border-white/[0.1] rounded-2xl p-8"
-            >
-              <div className="flex gap-1 mb-5">
-                {Array.from({ length: testimonial.rating }).map((_, i) => (
-                  <Star
-                    key={i}
-                    className="w-4 h-4 fill-[#34D399] text-[#34D399]"
-                  />
-                ))}
-              </div>
-
-              <p className="text-gray-400 text-sm leading-relaxed mb-6 italic">
-                &ldquo;{testimonial.text}&rdquo;
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {testimonials.map((t, i) => (
+            <div key={i} className="bg-[#0a0a0a] border border-white/5 rounded-2xl p-8 flex flex-col justify-between">
+              <p className="text-gray-300 text-sm leading-relaxed mb-8">
+                "{t.quote}"
               </p>
-
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#34D399]/20 text-[#34D399] flex items-center justify-center font-bold text-sm">
-                  {testimonial.name.charAt(0)}
-                </div>
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500"></div>
                 <div>
-                  <p className="font-semibold text-white text-sm">
-                    {testimonial.name}
-                  </p>
-                  <p className="text-gray-500 text-xs">{testimonial.role}, {testimonial.company}</p>
+                  <div className="text-sm font-bold text-white">{t.author}</div>
+                  <div className="text-xs text-gray-500">{t.role}</div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

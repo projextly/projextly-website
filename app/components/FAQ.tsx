@@ -1,92 +1,84 @@
 "use client";
-
-import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
-import { FAQ_ITEMS } from '@/lib/constants';
-import { motion } from 'framer-motion';
+import { useState } from "react";
+import { Plus, Minus } from "lucide-react";
 
 export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const toggle = (index: number) => {
+  const faqs = [
+    {
+      question: "How secure is my data?",
+      answer: "We employ enterprise-grade security measures including end-to-end encryption, SOC2 compliance, and zero-retention policies for all sensitive queries. Your data is never used to train our models without explicit consent."
+    },
+    {
+      question: "Is there a free trial?",
+      answer: "Yes, we offer a 7-day free trial on our Pro plan. You can test all features with no commitment. No credit card required to start."
+    },
+    {
+      question: "Can I connect my internal database?",
+      answer: "Absolutely. We provide secure connectors for Postgres, MySQL, MongoDB, Snowflake, and many other database systems. You can also connect via custom API."
+    },
+    {
+      question: "Do you offer enterprise support?",
+      answer: "Yes, our Custom tier includes 24/7 dedicated phone support, a dedicated account manager, and a guaranteed 99.99% uptime SLA."
+    },
+    {
+      question: "What models do you use?",
+      answer: "We support a range of state-of-the-art models including GPT-4, Claude 3.5 Sonnet, and open-source models like Llama 3. You can choose the right model for each specific task."
+    },
+    {
+      question: "How do I invite team members?",
+      answer: "You can invite team members from your dashboard settings. Pro plans support unlimited team members with granular role-based access controls."
+    }
+  ];
+
+  const toggleOpen = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <section id="faq" className="section-light py-24">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p className="text-[#34D399] font-semibold text-sm uppercase tracking-widest mb-3 text-center">
-          Got Questions?
-        </p>
-        <motion.h2 
-          initial={{ opacity: 0, y: 30 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
-          viewport={{ once: true, margin: "-50px" }} 
-          transition={{ duration: 0.6 }}
-          className="text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-12"
-        >
-          Frequently Asked Questions
-        </motion.h2>
+    <section className="bg-black py-24 w-full border-t border-white/5">
+      <div className="max-w-[1400px] mx-auto px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          <div className="lg:col-span-5">
+            <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-white mb-6">
+              Questions answered,<br />
+              <span className="text-gray-400">clarity delivered.</span>
+            </h2>
+            <p className="text-sm text-gray-500 mb-2">
+              Have a different question?
+            </p>
+            <a href="mailto:support@example.com" className="text-sm font-bold text-white hover:text-gray-300 transition-colors underline underline-offset-4 decoration-white/30">
+              Email us
+            </a>
+          </div>
 
-        <motion.div 
-          initial="hidden" 
-          whileInView="visible" 
-          viewport={{ once: true, margin: "-50px" }} 
-          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
-          className="space-y-4"
-        >
-          {FAQ_ITEMS.map((faq, index) => (
-            <motion.div
-              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
-              key={index}
-              className="bg-white/5 backdrop-blur-[12px] border border-white/[0.1] rounded-2xl overflow-hidden transition-all duration-300 mb-4"
-            >
-              <button
-                onClick={() => toggle(index)}
-                aria-expanded={openIndex === index}
-                aria-controls={`faq-answer-${index}`}
-                className="w-full flex items-center justify-between px-6 py-5 text-left group"
-              >
-                <span className="font-medium text-gray-900 text-sm group-hover:text-[#34D399] transition-colors">
-                  {faq.question}
-                </span>
-                <ChevronDown
-                  className={`w-5 h-5 text-[#34D399] transition-transform duration-300 ${
-                    openIndex === index ? 'rotate-180' : ''
-                  }`}
-                />
-              </button>
-
-              {openIndex === index && (
-                <div 
-                  id={`faq-answer-${index}`}
-                  role="region"
-                  className="px-6 pb-5 text-gray-600 text-sm leading-relaxed border-t border-gray-200 pt-4"
-                >
-                  {faq.answer}
+          <div className="lg:col-span-7">
+            <div className="divide-y divide-white/10">
+              {faqs.map((faq, i) => (
+                <div key={i} className="py-6 first:pt-0 last:pb-0">
+                  <button 
+                    onClick={() => toggleOpen(i)}
+                    className="w-full flex items-center justify-between text-left group"
+                  >
+                    <span className={`text-lg font-medium transition-colors ${openIndex === i ? 'text-white' : 'text-gray-300 group-hover:text-white'}`}>
+                      {faq.question}
+                    </span>
+                    <span className="ml-6 flex-shrink-0 w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white transition-colors group-hover:bg-white/10">
+                      {openIndex === i ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                    </span>
+                  </button>
+                  <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openIndex === i ? 'max-h-48 opacity-100 mt-4' : 'max-h-0 opacity-0'}`}>
+                    <p className="text-gray-400 text-sm leading-relaxed pr-12">
+                      {faq.answer}
+                    </p>
+                  </div>
                 </div>
-              )}
-            </motion.div>
-          ))}
-        </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: FAQ_ITEMS.map((faq) => ({
-              "@type": "Question",
-              name: faq.question,
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: faq.answer,
-              },
-            })),
-          }),
-        }}
-      />
     </section>
   );
 }
