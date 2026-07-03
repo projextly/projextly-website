@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import PageHeader from "../components/PageHeader";
 import WhoAreWe from "../components/WhoAreWe";
-import Stats from "../components/Stats";
+// import Stats from "../components/Stats";
 import Testimonials from "../components/Testimonials";
 
 export const metadata: Metadata = {
