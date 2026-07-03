@@ -107,7 +107,7 @@ export default function FutureOfWebDev() {
               your online success. Every industry has unique requirements,
               whether it&apos;s managing large inventories, handling secure
               transactions, or offering personalized shopping experiences. At
-              Webomindapps, we help you assess platforms like WooCommerce,
+              projextly, we help you assess platforms like WooCommerce,
               Magento, BigCommerce, Shopify, and more based on your business
               size, goals, budget, and technical needs.
             </p>

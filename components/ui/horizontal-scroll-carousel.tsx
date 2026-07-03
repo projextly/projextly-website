@@ -296,9 +296,9 @@ export function Card3() {
 
             <div className="mt-8 space-y-8 text-[14px]  text-gray-700">
               <p>
-                Being a top web development company in Bangalore, Webomindapps
+                Being a top web development company in Bangalore, Projextly
                 believes in delivering the best value to its clients. This is
-                Webomindapps mission and sole purpose while taking up any new
+                Projextly mission and sole purpose while taking up any new
                 project. We have built our reputation on the core philosophy of
                 delivering the best in class with the best in price.
               </p>

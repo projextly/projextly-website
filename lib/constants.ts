@@ -538,7 +538,7 @@ export interface SocialLink {
   label: string;
   ariaLabel: string;
   href: string;
-  icon: React.ComponentType;
+  icon: React.ComponentType<{ className?: string }>;
 }
 
 export const SOCIAL_LINKS: SocialLink[] = [

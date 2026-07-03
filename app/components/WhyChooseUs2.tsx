@@ -26,7 +26,7 @@ const features = [
   {
     title: "Real-time project tracking",
     description:
-      "At Webomindapps, we prioritize transparent communication with our clients by providing real-time report tracking.",
+      "At Projextly, we prioritize transparent communication with our clients by providing real-time report tracking.",
     points: [
       "Stay up-to-date",
       "See your project progress",
@@ -80,7 +80,7 @@ export default function WhyChooseUs2() {
         <div className="mx-auto max-w-7xl px-6 py-20">
           <div className="flex flex-wrap items-start gap-5">
             <h2 className="max-w-4xl text-4xl font-semibold leading-tight text-black md:text-6xl">
-              Why Webomindapps is the Top Web Development Company in Bangalore?
+              Why Projextly is the Top Web Development Company in Bangalore?
             </h2>
 
             <button className="flex h-14 w-24 items-center justify-center rounded-full border border-black hover:bg-black hover:text-white transition">
