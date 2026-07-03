@@ -24,7 +24,7 @@ export default function CompanyPage() {
         badge="About Us"
       />
       <WhoAreWe />
-      <Stats />
+      {/* <Stats /> */}
       <Testimonials />
     </main>
   );
