@@ -1,133 +1,26 @@
 @import "tailwindcss";
 
-@plugin "tailwindcss-animate";
-
-@custom-variant dark (&:is(.dark *));
-
-@theme {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-}
-
 :root {
-  --brainhub-cyan: #00e5ff;
-  --brainhub-dark: #060B12;
-  --brainhub-card: #0a0f16;
+  --background: #ffffff;
+  --foreground: #171717;
 }
 
-/* ============================
-   BASE LAYER
-   ============================ */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
 
-@layer base {
-  body {
-    @apply bg-white text-gray-900 antialiased;
-    letter-spacing: -0.01em;
-  }
-  html {
-    @apply font-sans scroll-smooth;
-  }
-  h1, h2, h3, h4, h5, h6 {
-    letter-spacing: -0.03em;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
   }
 }
 
-/* ============================
-   ACCESSIBILITY — Focus Styles
-   ============================ */
-
-/* Visible focus ring for keyboard navigation (all interactive elements) */
-:focus-visible {
-  @apply outline-2 outline-offset-2 outline-[#00e5ff];
-}
-
-/* Skip-to-content link */
-.skip-link {
-  @apply absolute -top-full left-4 z-[9999] bg-[#00e5ff] text-black font-bold px-6 py-3 rounded-b-lg transition-all;
-}
-.skip-link:focus {
-  @apply top-0;
-}
-
-/* ============================
-   CUSTOM UTILITIES
-   ============================ */
-
-/* 
-  Brainhub Cyan Button 
-  A bright cyan button with dark text — used across both dark AND light sections.
-*/
-.btn-brainhub {
-  @apply inline-flex items-center justify-center bg-[#00e5ff] text-black font-bold rounded-lg px-8 py-4 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(0,229,255,0.4)];
-}
-.btn-brainhub:focus-visible {
-  @apply outline-2 outline-offset-2 outline-[#00e5ff] ring-2 ring-[#00e5ff]/30;
-}
-
-/* 
-  Glowing Arc Divider
-  The massive glowing curve seen at the bottom of dark sections in the screenshot.
-*/
-.glowing-arc {
-  position: absolute;
-  bottom: 0;
-  left: -10%;
-  width: 120%;
-  height: 180px;
-  background: transparent;
-  border-top-left-radius: 50% 100%;
-  border-top-right-radius: 50% 100%;
-  box-shadow: 0 -20px 50px -10px rgba(0, 229, 255, 0.2);
-  border-top: 1px solid rgba(0, 229, 255, 0.1);
-  pointer-events: none;
-}
-
-/* 
-  Dark Section Classes 
-*/
-.section-dark {
-  @apply bg-[#060B12] text-white relative;
-}
-
-.card-dark {
-  @apply bg-[#0a0f16] border border-white/10 rounded-xl transition-all duration-300 hover:border-[#00e5ff]/30;
-}
-
-/* 
-  Light Section Classes
-*/
-.section-light {
-  @apply bg-white text-gray-900;
-}
-
-.section-muted {
-  @apply bg-gray-50 text-gray-900;
-}
-
-.b2b-card {
-  @apply bg-white border border-gray-200 rounded-xl shadow-sm transition-all duration-200;
-}
-
-.b2b-card-hover:hover {
-  @apply border-[#00e5ff]/50 shadow-md -translate-y-1;
-}
-
-/* Keyframes for subtle animations */
-@keyframes shimmer {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #060B12;
-}
-::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #00e5ff;
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
 }
