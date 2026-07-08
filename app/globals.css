@@ -6,14 +6,15 @@
 
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --color-emerald-highlight: #34D399;
+  --font-display: var(--font-outfit), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --color-emerald-highlight: #10B981;
 }
 
 :root {
-  --primary-dark: #000000;
-  --light-bg: #F4F4F5;
-  --zinc-accent: #18181B;
-  --emerald-highlight: #34D399;
+  --primary-dark: #030712; /* Deep space */
+  --light-bg: #F8FAFC;
+  --zinc-accent: #0F172A;
+  --emerald-highlight: #10B981;
 }
 
 /* ============================
@@ -22,16 +23,17 @@
 
 @layer base {
   body {
-    @apply bg-black text-gray-900 antialiased;
-    letter-spacing: -0.01em;
+    @apply bg-[#030712] text-slate-200 antialiased overflow-x-hidden;
+    letter-spacing: -0.015em;
   }
   html {
     @apply font-sans scroll-smooth;
   }
   h1, h2, h3, h4, h5, h6 {
-    letter-spacing: -0.05em;
-    line-height: 1.05;
-    font-weight: 500;
+    font-family: var(--font-outfit), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    font-weight: 600;
   }
 }
 
@@ -39,14 +41,12 @@
    ACCESSIBILITY — Focus Styles
    ============================ */
 
-/* Visible focus ring for keyboard navigation */
 :focus-visible {
-  @apply outline-2 outline-offset-2 outline-[#34D399];
+  @apply outline-2 outline-offset-2 outline-[#10B981];
 }
 
-/* Skip-to-content link */
 .skip-link {
-  @apply absolute -top-full left-4 z-[9999] bg-[#34D399] text-black font-bold px-6 py-3 rounded-full transition-all;
+  @apply absolute -top-full left-4 z-[9999] bg-[#10B981] text-black font-bold px-6 py-3 rounded-full transition-all;
 }
 .skip-link:focus {
   @apply top-0;
@@ -60,29 +60,64 @@
   Interactive Action Button
 */
 .btn-primary {
-  @apply inline-flex items-center justify-between gap-4 bg-white text-zinc-900 font-medium rounded-full pl-6 pr-2 py-2 transition-all duration-300 hover:scale-[1.05];
+  @apply inline-flex items-center justify-between gap-4 bg-white text-slate-900 font-medium rounded-full pl-6 pr-2 py-2 transition-all duration-300 hover:scale-[1.02];
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
 }
 .btn-primary .icon-circle {
-  @apply w-10 h-10 bg-zinc-900 rounded-full flex items-center justify-center text-white transition-colors duration-300;
+  @apply w-10 h-10 bg-slate-900 rounded-full flex items-center justify-center text-white transition-all duration-300;
 }
 .btn-primary:hover .icon-circle {
-  @apply bg-zinc-700;
+  @apply bg-[#10B981] text-black scale-110;
 }
 .btn-primary:focus-visible {
-  @apply outline-2 outline-offset-2 outline-[#34D399] ring-2 ring-[#34D399]/30;
+  @apply outline-2 outline-offset-2 outline-[#10B981] ring-2 ring-[#10B981]/30;
+}
+
+/* Magnetic Button Base */
+.magnetic-btn {
+  @apply relative inline-flex items-center justify-center transition-transform duration-200 ease-out;
 }
 
 /*
-  Glass Stat Card
+  Glass Stat Card & Bento Box
 */
-.glass-stat-card {
-  @apply flex flex-col justify-center;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+.glass-panel {
+  @apply relative overflow-hidden;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-panel:hover {
+  background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 1rem;
-  padding: 1.25rem;
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+}
+
+/* Hover Glow Effect inside Panels */
+.hover-glow::before {
+  content: "";
+  position: absolute;
+  top: var(--y, 50%);
+  left: var(--x, 50%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.hover-glow:hover::before {
+  opacity: 1;
+}
+.hover-glow > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* 
@@ -93,51 +128,79 @@
 }
 .grain-overlay::before {
   content: "";
-  position: absolute;
+  position: fixed;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.15;
-  mix-blend-mode: overlay;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  mix-blend-mode: screen;
   pointer-events: none;
-  z-index: 1;
+  z-index: 9999;
+}
+
+/* Glow Elements */
+.glowing-arc {
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120vw;
+  height: 60vh;
+  background: radial-gradient(ellipse at top, rgba(16, 185, 129, 0.15) 0%, transparent 60%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* 
-  Dark Section Classes 
+  Section Classes 
 */
 .section-dark {
-  @apply bg-black text-white relative overflow-hidden;
-  /* Add subtle bottom-heavy gradient */
-  background: linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
+  @apply bg-[#030712] text-slate-200 relative overflow-hidden;
 }
 
-.card-dark {
-  @apply bg-[#18181B] border border-white/10 transition-all duration-300;
-}
-
-/* 
-  Light Section Classes
-*/
 .section-light {
-  @apply bg-[#F4F4F5] text-zinc-900  overflow-hidden;
+  @apply bg-slate-50 text-slate-900 overflow-hidden;
 }
 
-/* Keyframes for subtle animations */
-@keyframes fade-in-up {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Text Gradients */
+.text-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.text-gradient-emerald {
+  background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.animate-fade-in-up {
-  animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* Keyframes */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.1); }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
 }
 
 /* Scrollbar */
@@ -145,12 +208,18 @@
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: #030712;
 }
 ::-webkit-scrollbar-thumb {
-  background: #18181B;
+  background: #1e293b;
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #34D399;
+  background: #10B981;
+}
+
+/* Hide original navbar/footer on specific landing pages if needed */
+.landing-page #root-navbar,
+.landing-page #root-footer {
+  display: none !important;
 }

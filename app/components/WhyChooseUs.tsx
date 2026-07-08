@@ -13,7 +13,7 @@ const cards = [Card1, Card2, Card3, Card4];
 const WhyChooseUsCarousel = () => {
   return (
     // i want to top corder with rounded
-    <div className="bg-black">
+    <div className="">
       <div className="flex flex-col items-center justify-center px-6 pt-16 pb-8 sm:pt-20 sm:pb-10 md:pt-24 md:pb-12">
         <p className="mb-2 text-center text-xs font-semibold uppercase tracking-widest text-[#34D399] sm:mb-3 sm:text-sm">
           Our website development process
@@ -69,7 +69,7 @@ const HorizontalScrollCarousel = () => {
 
   if (isTouchLayout) {
     return (
-      <section className="bg-black py-8">
+      <section className="py-8">
         <div className="flex flex-col snap-x snap-mandatory gap-2 overflow-x-auto px-4 pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {cards.map((CardComponent, index) => (
             <div key={index} className="shrink-0 snap-center">
@@ -82,7 +82,7 @@ const HorizontalScrollCarousel = () => {
   }
 
   return (
-    <section ref={targetRef} className="relative h-[400vh] bg-black">
+    <section ref={targetRef} className="relative h-[400vh]">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         <motion.div ref={trackRef} style={{ x }} className="flex gap-4 px-4 sm:gap-6 sm:px-6">
           {cards.map((CardComponent, index) => (

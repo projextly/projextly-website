@@ -4,68 +4,75 @@ import Link from 'next/link';
 import { SOCIAL_LINKS, FOOTER_SERVICES, FOOTER_COMPANY } from '@/lib/constants';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
 
 export function CTA() {
   return (
-    <section id="contact" className="section-dark relative py-24 overflow-hidden bg-black">
-      <div className="grain-overlay" />
-      {/* Glowing Arc */}
-      <div className="absolute -top-[50px] w-[120%] -left-[10%] h-[100px] border-b border-[#34D399]/20 rounded-b-[50%] shadow-[0_20px_50px_-10px_rgba(52,211,153,0.2)] pointer-events-none glowing-arc" />
+    <section id="contact" className="relative min-h-[80vh] flex flex-col items-center justify-center overflow-hidden bg-[#030712] rounded-t-[3rem] mt-[-3rem] z-20">
       
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6 }}
-        className="relative max-w-3xl mx-auto px-4 text-center"
-      >
-        <h2 className="text-3xl sm:text-5xl font-bold text-white mb-5 leading-tight">
-          Ready to Build Something Amazing?
-        </h2>
-        <p className="text-gray-400 text-base max-w-xl mx-auto mb-8">
-          Let us turn your vision into a stunning digital reality. Get in touch
-          for a free consultation and project estimate.
-        </p>
-        <a href="mailto:hello@projextly.com">
-          <button className="btn-primary group mx-auto mt-4">
-            <span className="text-sm font-medium">GET STARTED TODAY</span>
-            <div className="icon-circle">
-              <span className="group-hover:translate-x-0.5 transition-transform">→</span>
-            </div>
-          </button>
-        </a>
-      </motion.div>
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#10B981]/10 via-[#030712]/80 to-[#030712] pointer-events-none" />
+      <div className="grain-overlay pointer-events-none opacity-20" />
+      
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 flex flex-col items-center text-center">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-12"
+        >
+          <span className="text-[#10B981] font-medium tracking-widest uppercase text-sm mb-6 block">
+            Got a project in mind?
+          </span>
+          <h2 className="text-7xl sm:text-8xl md:text-[9rem] font-display font-black text-white leading-none tracking-tighter hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-white hover:to-[#10B981] transition-all duration-700 cursor-default">
+            LET'S TALK
+          </h2>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <Link href="/contact" className="group">
+            <button className="magnetic-btn bg-white text-black rounded-full pl-8 pr-3 py-3 flex items-center gap-6 text-xl font-bold hover:scale-105 transition-all shadow-[0_0_40px_rgba(16,185,129,0.3)]">
+              <span>Start the conversation</span>
+              <div className="w-12 h-12 bg-[#030712] text-white rounded-full flex items-center justify-center group-hover:bg-[#10B981] group-hover:text-black transition-colors">
+                <ArrowRight className="w-6 h-6 -rotate-45 group-hover:rotate-0 transition-transform" />
+              </div>
+            </button>
+          </Link>
+        </motion.div>
+      </div>
     </section>
   );
 }
 
 export function Footer() {
   return (
-    <footer className="px-4 sm:px-6 lg:px-8 pb-8 pt-8 relative z-10 bg-white/99">
-      <div className="max-w-7xl mx-auto bg-zinc-950 border border-white/5 rounded-[2.5rem] p-10 sm:p-16 shadow-[0_0_50px_rgba(52,211,153,0.03)] relative overflow-hidden">
-        {/* Subtle glow effect inside footer */}
-        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-[#34D399]/5 rounded-full blur-[100px] pointer-events-none" />
+    <footer className="relative bg-[#030712] pt-24 pb-12 px-6 lg:px-8 overflow-hidden">
+      <div className="max-w-7xl mx-auto relative z-10">
         
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 relative z-10">
-          {/* Column 1 — Brand */}
-          <div className="lg:col-span-2">
-            <Image 
-              src="/projextly-logo.png"
-              alt="Projextly Logo"
-              width={150}
-              height={50}
-              className="mb-2"
-            />
-            <p className="text-[#34D399] text-sm font-medium mb-5">
-              Web Development Agency
-            </p>
-            <p className="text-gray-400 text-sm max-w-sm leading-relaxed mb-6">
-              Bengaluru, Karnataka, India
-              <br />
-              Crafting premium digital experiences for the modern web.
-            </p>
-            <div className="flex gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-24">
+          
+          {/* Brand Col */}
+          <div className="lg:col-span-5 flex flex-col justify-between">
+            <div>
+              <Image 
+                src="/projextly-logo.png"
+                alt="Projextly Logo"
+                width={160}
+                height={54}
+                className="mb-8"
+              />
+              <p className="text-slate-400 text-lg leading-relaxed max-w-sm mb-8 font-medium">
+                We engineer digital experiences that push boundaries. Based in Bengaluru, working globally.
+              </p>
+            </div>
+            
+            <div className="flex gap-4 mt-auto">
               {SOCIAL_LINKS.map((social) => {
                 const Icon = social.icon;
                 return (
@@ -75,28 +82,28 @@ export function Footer() {
                     aria-label={social.ariaLabel}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 bg-white/5 hover:bg-[#34D399]/10 rounded-xl flex items-center justify-center text-gray-400 hover:text-[#34D399] transition-all duration-300 border border-white/5 hover:border-[#34D399]/30 hover:-translate-y-1"
+                    className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:border-[#10B981] hover:bg-[#10B981]/10 transition-all duration-300"
                   >
-                    <Icon className="w-4 h-4" />
+                    <Icon className="w-5 h-5" />
                   </a>
                 );
               })}
             </div>
           </div>
 
-          {/* Column 2 — Services */}
-          <div>
-            <h4 className="text-white font-semibold text-sm uppercase tracking-wider mb-6 flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#34D399]" />
-              Services
-            </h4>
-            <ul className="space-y-3">
+          <div className="lg:col-span-1 hidden lg:block" />
+
+          {/* Links Col 1 */}
+          <div className="lg:col-span-3">
+            <h4 className="text-white font-display font-semibold text-lg mb-8">Services</h4>
+            <ul className="space-y-4">
               {FOOTER_SERVICES.map((service) => (
                 <li key={service.label}>
                   <Link
                     href={service.href}
-                    className="text-gray-400 text-sm hover:text-[#34D399] hover:translate-x-1 inline-block transition-all duration-300"
+                    className="text-slate-400 hover:text-[#10B981] text-base transition-colors duration-300 flex items-center gap-2 group"
                   >
+                    <span className="w-0 h-px bg-[#10B981] transition-all duration-300 group-hover:w-4" />
                     {service.label}
                   </Link>
                 </li>
@@ -104,47 +111,41 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 3 — Company */}
-          <div>
-            <h4 className="text-white font-semibold text-sm uppercase tracking-wider mb-6 flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#34D399]" />
-              Company
-            </h4>
-            <ul className="space-y-3">
+          {/* Links Col 2 */}
+          <div className="lg:col-span-3">
+            <h4 className="text-white font-display font-semibold text-lg mb-8">Company</h4>
+            <ul className="space-y-4">
               {FOOTER_COMPANY.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 text-sm hover:text-[#34D399] hover:translate-x-1 inline-block transition-all duration-300"
+                    className="text-slate-400 hover:text-[#10B981] text-base transition-colors duration-300 flex items-center gap-2 group"
                   >
+                    <span className="w-0 h-px bg-[#10B981] transition-all duration-300 group-hover:w-4" />
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
+
         </div>
 
-        {/* Bottom bar */}
-        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 relative z-10">
-          <p className="text-gray-500 text-sm">
-            © 2026 Projextly. All rights reserved.
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
+          <p className="text-slate-500 font-medium">
+            © {new Date().getFullYear()} Projextly. All rights reserved.
           </p>
-          <div className="flex gap-6">
-            <Link
-              href="#"
-              className="text-gray-500 text-sm hover:text-[#34D399] transition-colors"
-            >
+          <div className="flex items-center gap-8">
+            <Link href="/privacy" className="text-slate-500 hover:text-white transition-colors font-medium">
               Privacy Policy
             </Link>
-            <Link
-              href="#"
-              className="text-gray-500 text-sm hover:text-[#34D399] transition-colors"
-            >
+            <Link href="/terms" className="text-slate-500 hover:text-white transition-colors font-medium">
               Terms of Service
             </Link>
           </div>
         </div>
+
       </div>
     </footer>
   );

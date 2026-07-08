@@ -1,39 +1,52 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export default function ServicesIntro() {
   return (
-    <section className="bg-white">
-      <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:px-10">
+    <section className="bg-[#030712] relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#10B981]/5 rounded-full blur-[150px] pointer-events-none mix-blend-screen" />
+      
+      <div className="mx-auto max-w-7xl px-6 py-32 md:py-40 lg:px-10 relative z-10">
         {/* Heading */}
-        <h1 className="max-w-6xl text-5xl font-bold leading-[1.08] tracking-[-0.03em] text-black md:text-6xl lg:text-[72px]">
-          Get creative website services to secure your digital presence
-        </h1>
+        <motion.h1 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-6xl text-5xl font-display font-bold leading-[1.08] tracking-tight text-white md:text-6xl lg:text-[72px]"
+        >
+          Get creative digital services to <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#10B981] to-emerald-500">secure your market presence.</span>
+        </motion.h1>
 
         {/* Bottom Section */}
-        <div className="mt-24 flex flex-col lg:flex-row">
+        <div className="mt-24 flex flex-col lg:flex-row items-start">
           {/* Line */}
-          <div className="flex w-full lg:w-1/4">
-            <div className="mt-4 h-px w-44 bg-black"></div>
-          </div>
+          <motion.div 
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex w-full lg:w-1/4 origin-left"
+          >
+            <div className="mt-4 h-[2px] w-44 bg-[#10B981]/50 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
+          </motion.div>
 
           {/* Text */}
-          <div className="w-full">
-            <p className="text-lg leading-[2] text-neutral-800 md:text-[18px]">
-              We offer a wider range of services to help you establish a strong
-              presence in the online market. Our finest services include website
-              and mobile app development,
-              <span className="text-red-500">
-                {" "}
-                eCommerce development,
-              </span>{" "}
-              digital marketing, and UI/UX design. We also incorporate the
-              latest SEO techniques to ensure that your website ranks high in
-              search engine results. Our experts create solutions that give a
-              smooth user experience on different devices, considering your
-              target audience. We help you achieve your business objectives
-              effortlessly. We are a web development company in Bangalore that
-              focuses on providing high-quality service. Choose us to
-              outperform your competitors.
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="w-full lg:w-3/4 mt-8 lg:mt-0"
+          >
+            <p className="text-xl leading-relaxed text-slate-400 font-medium">
+              We offer a full spectrum of engineering services to help you establish a dominant presence in the digital landscape. Our core expertise includes highly scalable web applications, robust mobile platforms, 
+              <span className="text-[#10B981]"> high-conversion headless eCommerce</span>, and stunning UI/UX design. 
+              <br /><br />
+              We incorporate advanced technical SEO architectures to ensure that your platform not only looks incredible but commands top search rankings. As an elite development agency, we engineer solutions that outperform the competition.
             </p>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

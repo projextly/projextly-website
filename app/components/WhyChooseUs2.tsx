@@ -1,142 +1,156 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 
 const features = [
   {
-    title: "Dedicated and personalized web development",
+    title: "Dedicated & Personalized Engineering",
     description:
-      "We value making things and always give our best to create unique websites and achieve great outcomes.",
+      "We don't use templates. We architect bespoke digital solutions from the ground up to achieve extraordinary outcomes.",
     points: [
-      "Focus on your needs",
-      "Tailored to your business",
-      "Personalized attention",
+      "Focus on your specific KPI needs",
+      "Tailored system architecture",
+      "Personalized technical attention",
     ],
   },
   {
-    title: "High quality at a reasonable cost",
+    title: "Elite Quality at Scale",
     description:
-      "Our streamlined processes and optimized resource allocation enable us to deliver high-quality web development solutions as per global standards.",
+      "Our streamlined agile processes and top-tier talent allocation enable us to deliver enterprise-grade solutions efficiently.",
     points: [
-      "Affordable prices",
-      "High-quality work",
-      "Value for your money",
+      "Transparent pricing models",
+      "World-class code quality",
+      "Maximum ROI",
     ],
   },
   {
-    title: "Real-time project tracking",
+    title: "Real-time Project Telemetry",
     description:
-      "At Projextly, we prioritize transparent communication with our clients by providing real-time report tracking.",
+      "We prioritize transparent communication. Clients have access to real-time development metrics and staging environments.",
     points: [
-      "Stay up-to-date",
-      "See your project progress",
-      "Be involved in the process",
+      "Continuous deployment access",
+      "Sprint velocity tracking",
+      "Direct engineer communication",
     ],
   },
   {
-    title: "Ongoing support",
+    title: "Continuous Optimization",
     description:
-      "We believe in providing ongoing support to our clients in maintaining and optimizing their websites.",
+      "Deployment is just the beginning. We provide ongoing support to maintain, secure, and optimize your platform.",
     points: [
-      "Help when you need it",
-      "Answer your questions",
-      "Make sure you're happy",
+      "24/7 SLA availability",
+      "Proactive security patching",
+      "Performance monitoring",
     ],
   },
   {
-    title: "Dynamic and responsive website",
+    title: "Hyper-Responsive Interfaces",
     description:
-      "We strive to exceed client expectations with our reliable and accessible web development services.",
+      "We build liquid layouts that adapt flawlessly to any device, ensuring an uncompromising user experience everywhere.",
     points: [
-      "Looks great on any device",
-      "Works seamlessly",
-      "Keeps your visitors engaged",
+      "Mobile-first architecture",
+      "Cross-browser perfection",
+      "High engagement retention",
     ],
   },
   {
-    title: "Performance readiness",
+    title: "Future-Proof Performance",
     description:
-      "We use smart tools to make websites easy to use and navigate for users.",
+      "We leverage modern tooling (Next.js, Edge computing) to deliver instantaneous load times and scalable infrastructure.",
     points: [
-      "Built to last",
-      "Scalable and secure",
-      "Ready for the future",
+      "Edge-network deployment",
+      "Serverless scalability",
+      "Unbreakable security",
     ],
   },
 ];
 
 export default function WhyChooseUs2() {
   return (
-    <section className="bg-[#faf9f7]">
+    <section className="bg-[#030712] py-32 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-[#10B981]/5 via-transparent to-transparent pointer-events-none" />
+      <div className="grain-overlay pointer-events-none opacity-20" />
+
       {/* Header */}
-      <div
-        className="border-b border-neutral-200"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right,#ececec 1px,transparent 1px),linear-gradient(to bottom,#ececec 1px,transparent 1px)",
-          backgroundSize: "16px 16px",
-        }}
-      >
-        <div className="mx-auto max-w-7xl px-6 py-20">
-          <div className="flex flex-wrap items-start gap-5">
-            <h2 className="max-w-4xl text-4xl font-semibold leading-tight text-black md:text-6xl">
-              Why Projextly is the Top Web Development Company in Bangalore?
-            </h2>
+      <div className="relative z-10 border-b border-white/10 pb-20">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="flex flex-wrap items-center justify-between gap-10">
+            <motion.h2 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6 }}
+              className="max-w-4xl text-4xl font-display font-bold leading-tight text-white md:text-5xl lg:text-6xl tracking-tight"
+            >
+              Why Projextly is the Top <br className="hidden lg:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#10B981] to-emerald-400">Engineering Partner</span>
+            </motion.h2>
 
-            <button className="flex h-14 w-24 items-center justify-center rounded-full border border-black hover:bg-black hover:text-white transition">
+            <motion.button 
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex h-16 w-24 items-center justify-center rounded-full border border-white/20 hover:border-[#10B981] hover:bg-[#10B981]/10 text-white hover:text-[#10B981] transition-all duration-300"
+            >
               <ArrowRight size={28} strokeWidth={1.5} />
-            </button>
-          </div>
-
-          {/* Decorative Shape */}
-          <div className="mt-6 flex items-center gap-2">
-            <div className="relative h-14 w-14 overflow-hidden rounded-full">
-              <div className="absolute bottom-0 left-0 h-full w-full bg-[#f59d75] rounded-tr-full"></div>
-            </div>
-
-            <div className="-ml-7 -mt-7 flex gap-2">
-              <div className="h-3 w-3 rounded-full bg-black"></div>
-              <div className="mt-3 h-2.5 w-2.5 rounded-full bg-black"></div>
-            </div>
+            </motion.button>
           </div>
         </div>
       </div>
 
       {/* Feature Grid */}
-      <div className="mx-auto max-w-7xl px-6 py-14">
-        <div className="grid grid-cols-1 border-t border-l border-neutral-300 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mx-auto max-w-7xl px-6 pt-20 relative z-10">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
           {features.map((item, index) => (
-            <div
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
               key={index}
-              className="border-r border-b border-neutral-300 p-8"
+              className="glass-panel p-8 md:p-10 border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors group rounded-[2rem]"
             >
-              <h3 className="mb-5 text-3xl font-medium leading-tight text-black">
+              <h3 className="mb-6 text-2xl font-display font-bold leading-tight text-white group-hover:text-[#10B981] transition-colors">
                 {item.title}
               </h3>
 
-              <p className="mb-8 text-sm leading-7 text-neutral-600">
+              <p className="mb-8 text-base leading-relaxed text-slate-400 font-medium">
                 {item.description}
               </p>
 
-              <ul className="space-y-2 text-sm text-black">
+              <ul className="space-y-3 text-sm text-slate-300 font-medium">
                 {item.points.map((point) => (
-                  <li key={point}>+ {point}</li>
+                  <li key={point} className="flex items-center gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] shadow-[0_0_8px_#10B981]" />
+                    {point}
+                  </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Button */}
-        <div className="mt-10 flex justify-center">
-          <button className="group flex items-center gap-3 border border-black px-7 py-4 text-sm font-medium transition hover:bg-black hover:text-white">
-            Book a 30-min Free Consultation
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-16 flex justify-center"
+        >
+          <button className="magnetic-btn group flex items-center gap-3 border border-[#10B981]/50 bg-[#10B981]/10 px-8 py-5 text-base font-bold text-[#10B981] rounded-full transition-all hover:bg-[#10B981] hover:text-black shadow-[0_0_30px_rgba(16,185,129,0.15)]">
+            Schedule Technical Consultation
             <ArrowUpRight
-              size={18}
-              className="transition group-hover:translate-x-1 group-hover:-translate-y-1"
+              size={20}
+              className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
             />
           </button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

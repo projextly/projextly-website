@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PageHeader from "../components/PageHeader";
 import Services from "../components/Services";
 import OurProcess from "../components/OurProcess";
-import CustomSolutions from "../components/CustomSolutions";
+// import CustomSolutions from "../components/CustomSolutions";
 
 export const metadata: Metadata = {
   title: "Services | Projextly",
@@ -25,7 +25,7 @@ export default function ServicesPage() {
       />
       <Services />
       <OurProcess />
-      <CustomSolutions />
+      {/* <CustomSolutions /> */}
     </main>
   );
 }

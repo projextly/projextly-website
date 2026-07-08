@@ -26,15 +26,15 @@ const features = [
 
 export function Card1() {
   return (
-    <section className="flex w-[88vw] shrink-0 items-center justify-center rounded-[2.5rem] bg-[#323635] border border-[#E8F4F0]/10 p-6 sm:w-[85vw] sm:p-8 md:w-[80vw] lg:w-[70vw] lg:p-12 xl:w-[1100px] shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+    <section className="flex w-[88vw] shrink-0 items-center justify-center rounded-[2.5rem] bg-white border border-[#E8F4F0]/10 p-6 sm:w-[85vw] sm:p-8 md:w-[80vw] lg:w-[70vw] lg:p-12 xl:w-[1100px] shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
       <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 sm:gap-x-8 sm:gap-y-10 lg:grid-cols-5 lg:gap-y-12">
         {features.map((item, index) => {
           const Icon = item.icon;
           return (
             <div key={index} className="group flex flex-col items-center text-center">
               <div className="mb-4">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#282b2a] border border-[#E8F4F0]/10 transition-all duration-300 group-hover:scale-110 group-hover:border-[#E53935]/50 group-hover:shadow-[0_0_20px_rgba(229,57,53,0.3)] sm:h-16 sm:w-16 lg:h-20 lg:w-20">
-                  <Icon className="h-6 w-6 text-[#E53935] sm:h-8 sm:w-8 lg:h-10 lg:w-10 transition-colors group-hover:text-[#E8F4F0]" strokeWidth={1.5} />
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#77777760] border border-[#E8F4F0]/10 transition-all duration-300 group-hover:scale-110 group-hover:border-[#E53935]/50 group-hover:shadow-[0_0_20px_rgba(229,57,53,0.3)] sm:h-16 sm:w-16 lg:h-20 lg:w-20">
+                  <Icon className="h-6 w-6 text-[#0a0a0a] sm:h-8 sm:w-8 lg:h-10 lg:w-10 transition-colors group-hover:text-[#E8F4F0]" strokeWidth={1.5} />
                 </div>
               </div>
               <h3 className="whitespace-pre-line text-sm font-display font-bold text-[#E8F4F0] sm:text-md tracking-wide">{item.title}</h3>

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 
 const TECHNOLOGIES = [
@@ -11,7 +10,7 @@ const TECHNOLOGIES = [
   {
     name: "Next.js",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
-    invertDark: true, // Next.js logo is black by default, needs to be inverted in dark mode or we use a white version.
+    invertDark: true,
   },
   {
     name: "TypeScript",
@@ -59,20 +58,21 @@ const TECHNOLOGIES = [
 
 export default function TechStack() {
   return (
-    <section id="techstack" className="relative py-24 overflow-hidden section-dark">
-      <div className="grain-overlay" />
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="techstack" className="relative py-32 overflow-hidden bg-[#030712]">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#10B981]/5 rounded-full blur-[150px] pointer-events-none mix-blend-screen" />
+      
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Heading */}
-        <div className="mb-16">
+        <div className="mb-20 text-center">
           <motion.h2 
             initial={{ opacity: 0, y: 30 }} 
             whileInView={{ opacity: 1, y: 0 }} 
             viewport={{ once: true, margin: "-50px" }} 
             transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-serif text-white text-center tracking-tight"
+            className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight"
           >
-            Technologies
+            Engineering <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#10B981] to-emerald-400">Stack</span>
           </motion.h2>
         </div>
 
@@ -81,38 +81,34 @@ export default function TechStack() {
           initial={{ opacity: 0, y: 30 }} 
           whileInView={{ opacity: 1, y: 0 }} 
           viewport={{ once: true, margin: "-50px" }} 
-          transition={{ duration: 0.6 }}
-          className="bg-[#050505] border border-[#34D399]/20 rounded-[2.5rem] p-10 md:p-16"
-          style={{ 
-            boxShadow: "0 0 80px -20px rgba(52, 211, 153, 0.15), inset 0 0 20px -10px rgba(52, 211, 153, 0.1)"
-          }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="glass-panel border border-white/10 rounded-[3rem] p-12 md:p-20 bg-black/40 relative overflow-hidden"
         >
+          {/* Inner ambient glow */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#10B981]/5 to-transparent pointer-events-none" />
+
           {/* Grid of Logos */}
           <motion.div 
             initial="hidden" 
             whileInView="visible" 
             viewport={{ once: true, margin: "-50px" }} 
             variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-16 gap-x-8 items-center justify-items-center"
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-16 gap-x-8 items-center justify-items-center relative z-10"
           >
             {TECHNOLOGIES.map((tech) => (
               <motion.div 
                 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
                 key={tech.name} 
-                className="flex flex-col items-center justify-center group gap-4 w-full h-full"
+                className="flex flex-col items-center justify-center group gap-6 w-full h-full"
               >
-                <div className="relative w-16 h-16 md:w-20 md:h-20 transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                  {/* Next.js and GitHub icons are black by default in DevIcon, so we use CSS invert for dark backgrounds */}
+                <div className="relative w-16 h-16 md:w-20 md:h-20 transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2">
                   <img
                     src={tech.icon}
                     alt={`${tech.name} logo`}
-                    className={`w-full h-full object-contain drop-shadow-lg ${tech.invertDark ? "invert" : ""}`}
+                    className={`w-full h-full object-contain drop-shadow-2xl ${tech.invertDark ? "invert" : "opacity-80 group-hover:opacity-100 transition-opacity"}`}
                   />
                 </div>
-                {/* We only show the name if the logo itself isn't a wordmark, but for consistency, 
-                    we can hide it or show it on hover, or always show it in small text.
-                    Let's show it subtly like the design image. */}
-                <span className="text-zinc-500 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="text-slate-500 font-display font-bold text-sm tracking-widest uppercase opacity-0 group-hover:opacity-100 group-hover:text-[#10B981] transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                   {tech.name}
                 </span>
               </motion.div>

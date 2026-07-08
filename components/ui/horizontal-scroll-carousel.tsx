@@ -123,7 +123,7 @@ const features = [
 
 export function Card1() {
   return (
-    <section className="bg-[#f6fbfb] w-7xl rounded-xl flex items-center justify-center">
+    <section className="bg-amber-200 w-7xl rounded-xl flex items-center justify-center">
       {/* <div className="mx-auto px-4"> */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-12 gap-x-8">
           {features.map((item, index) => {

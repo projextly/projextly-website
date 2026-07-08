@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, ArrowRight } from "lucide-react";
 import {
@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const navLinks = [
   { label: "Services", href: "/services" },
@@ -23,30 +24,51 @@ const navLinks = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="sticky top-5 z-40 w-[90%] md:w-[70%] lg:w-[75%] lg:max-w-7xl mx-auto ">
-      <nav className="flex items-center justify-between px-6 py-3 bg-black/50 backdrop-blur-[20px] border-[1.5px] border-white/10 rounded-full shadow-sm p-[1.5px]">
+    <motion.header
+      className="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-[95%] md:w-[85%] lg:w-[75%] lg:max-w-6xl"
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <nav
+        className={`flex items-center justify-between px-6 py-3 rounded-full transition-all duration-500 border ${
+          scrolled
+            ? "bg-[#030712]/80 backdrop-blur-xl border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
+            : "bg-transparent border-transparent"
+        }`}
+      >
         {/* Brand */}
-        <Link href="/" className="text-xl font-bold text-white tracking-tight">
-         <Image 
-          src="/projextly-logo.png"
-          alt="Projextly Logo"
-          width={120}
-          height={40}
-          priority
-         />
+        <Link href="/" className="relative z-10 flex items-center">
+          <Image
+            src="/projextly-logo.png"
+            alt="Projextly Logo"
+            width={120}
+            height={40}
+            priority
+            className="w-28 h-auto object-contain"
+          />
         </Link>
 
         {/* Desktop Links */}
-        <ul className="hidden md:flex items-center gap-8">
+        <ul className="hidden md:flex items-center gap-2 relative">
           {navLinks.map((link) => (
             <li key={link.href}>
-              <Link
-                href={link.href}
-                className="text-sm text-white/80 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-colors duration-200"
-              >
-                {link.label}
+              <Link href={link.href} className="group relative px-5 py-2 inline-block">
+                <span className="relative z-10 text-sm font-medium text-slate-300 group-hover:text-white transition-colors duration-300">
+                  {link.label}
+                </span>
+                <span className="absolute inset-0 rounded-full bg-white/5 opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-300 ease-out" />
               </Link>
             </li>
           ))}
@@ -54,12 +76,12 @@ export default function Navbar() {
 
         {/* Desktop CTA */}
         <Link href="/contact" className="hidden md:block">
-          <Button className="bg-white rounded-full text-black gap-2 group">
-            <span className="text-sm">Start Project</span>
-            <div className="icon-circle">
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+          <button className="btn-primary group relative overflow-hidden bg-white text-black pl-5 pr-1.5 py-1.5 rounded-full flex items-center gap-3">
+            <span className="relative z-10 text-sm font-bold tracking-tight">Start Project</span>
+            <div className="relative z-10 w-8 h-8 bg-[#030712] rounded-full flex items-center justify-center text-white group-hover:bg-[#10B981] group-hover:text-black transition-colors duration-300">
+              <ArrowRight className="w-4 h-4 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
             </div>
-          </Button>
+          </button>
         </Link>
 
         {/* Mobile Menu */}
@@ -68,50 +90,63 @@ export default function Navbar() {
             <SheetTrigger asChild>
               <button
                 aria-label="Open menu"
-                className="text-gray-300 hover:text-white transition-colors cursor-pointer"
+                className="text-slate-300 hover:text-white transition-colors cursor-pointer p-2 bg-white/5 rounded-full"
               >
-                <Menu className="size-6" />
+                <Menu className="size-5" />
               </button>
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="bg-[#060B12]/95 backdrop-blur-xl border-white/10 w-70"
+              className="bg-[#030712]/95 backdrop-blur-2xl border-white/10 w-80 sm:w-96"
             >
               <SheetHeader>
-                <SheetTitle className="text-white text-lg font-bold tracking-tight">
-                  Projextly<span className="text-[#34D399]">.</span>
+                <SheetTitle className="text-white text-2xl font-display font-bold tracking-tight text-left">
+                  Projextly<span className="text-[#10B981]">.</span>
                 </SheetTitle>
               </SheetHeader>
 
-              <div className="flex flex-col gap-2 mt-8 px-2">
-                {navLinks.map((link) => (
-                  <Link
+              <div className="flex flex-col gap-4 mt-12 px-2">
+                {navLinks.map((link, i) => (
+                  <motion.div
                     key={link.href}
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className="text-gray-300 hover:text-white hover:bg-white/5 rounded-xl px-4 py-3 transition-all duration-200 text-sm"
+                    initial={{ x: 20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.1 * i }}
                   >
-                    {link.label}
-                  </Link>
+                    <Link
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      className="text-slate-300 hover:text-white hover:pl-4 text-2xl font-display font-medium block transition-all duration-300"
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
                 ))}
 
-                <Link
-                  href="/contact"
-                  onClick={() => setOpen(false)}
-                  className="mt-4 flex"
+                <motion.div
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                  className="mt-8"
                 >
-                  <Button className="btn-primary group w-full flex justify-between items-center gap-2 bg-amber-50">
-                    <span className="text-sm">Start Project</span>
-                    <div className="icon-circle">
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                    </div>
-                  </Button>
-                </Link>
+                  <Link
+                    href="/contact"
+                    onClick={() => setOpen(false)}
+                    className="flex"
+                  >
+                    <button className="w-full btn-primary group relative overflow-hidden bg-white text-black px-6 py-4 rounded-2xl flex items-center justify-between">
+                      <span className="relative z-10 text-lg font-bold tracking-tight">Start Project</span>
+                      <div className="relative z-10 w-10 h-10 bg-[#030712] rounded-full flex items-center justify-center text-white group-hover:bg-[#10B981] group-hover:text-black transition-colors duration-300">
+                        <ArrowRight className="w-5 h-5 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
+                      </div>
+                    </button>
+                  </Link>
+                </motion.div>
               </div>
             </SheetContent>
           </Sheet>
         </div>
       </nav>
-    </header>
+    </motion.header>
   );
 }

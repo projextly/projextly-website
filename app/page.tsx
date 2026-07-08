@@ -12,16 +12,16 @@ import BusinessSuccess from './components/BusinessSuccess';
 // import WhyChooseUsCarousel from '@/components/ui/horizontal-scroll-carousel';
 
 const OurProcess = dynamic(() => import('./components/OurProcess'));
-const CustomSolutions = dynamic(() => import('./components/CustomSolutions'));
+// const CustomSolutions = dynamic(() => import('./components/CustomSolutions'));
 const Testimonials = dynamic(() => import('./components/Testimonials'));
-const Stats = dynamic(() => import('./components/Stats'));
+// const Stats = dynamic(() => import('./components/Stats'));
 const Industries = dynamic(() => import('./components/Industries'));
 const WhoAreWe = dynamic(() => import('./components/WhoAreWe'));
 const TechStack = dynamic(() => import('./components/TechStack'));
 const FAQ = dynamic(() => import('./components/FAQ'));
-const Blog = dynamic(() => import('./components/Blog'));
+// const Blog = dynamic(() => import('./components/Blog'));
 const ContactUs = dynamic(() => import('./components/ContactUs'));
-const WhyChooseUs = dynamic(() => import('./components/WhyChooseUs'));
+// const WhyChooseUs = dynamic(() => import('./components/WhyChooseUs'));
 
 export default function Home() {
   return (
@@ -31,11 +31,11 @@ export default function Home() {
       {/* <Clients /> */}
       {/* <Stats /> */}
       <Services />
-      <WhyChooseUsCarousel />
+      {/* <WhyChooseUsCarousel /> */}
       <WebsiteSolutionsSection />
       <Testimonials />
       <BusinessSuccess />
-      <FutureOfWebDev />
+      {/* <FutureOfWebDev /> */}
       <TechStack />
       <OurProcess />
       <WhyChooseUs2 />
