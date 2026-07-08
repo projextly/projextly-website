@@ -8,25 +8,9 @@ export default function ContactUs() {
   const [submitted, setSubmitted] = useState(false);
 
   return (
-    <section id="contact" className="relative py-24 overflow-hidden section-light">
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Heading */}
-        <p className="text-[#34D399] font-semibold text-sm uppercase tracking-widest mb-3 text-center">
-          Get In Touch
-        </p>
-        <motion.h2 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
-          className="text-3xl sm:text-5xl font-bold text-gray-900 text-center mb-4 leading-tight"
-        >
-          Ready to Build Something Amazing?
-        </motion.h2>
-        <p className="text-gray-600 text-center max-w-xl mx-auto mb-16">
-          Let&apos;s turn your vision into a stunning digital reality. Get in touch
-          for a free consultation and project estimate.
-        </p>
+    <section id="contact" className="relative py-24 overflow-hidden bg-[#030712]">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-[#10B981]/5 via-transparent to-transparent pointer-events-none" />
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
           {/* Left — Contact Info */}
@@ -35,18 +19,18 @@ export default function ContactUs() {
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
             variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
-            className="lg:col-span-2 space-y-8"
+            className="lg:col-span-2 space-y-6"
           >
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} className="bg-white/5 backdrop-blur-[12px] border border-white/[0.1] rounded-2xl p-6">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-5 h-5 text-[#34D399]" />
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} className="glass-panel p-8 border border-white/5 bg-white/[0.02]">
+              <div className="flex items-start gap-5">
+                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-6 h-6 text-[#10B981]" />
                 </div>
                 <div>
-                  <h4 className="text-gray-900 font-semibold text-sm mb-1">
-                    Office
+                  <h4 className="text-white font-display font-semibold text-lg mb-2">
+                    Headquarters
                   </h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-slate-400 text-base leading-relaxed">
                     Bengaluru, Karnataka
                     <br />
                     India 560001
@@ -55,18 +39,18 @@ export default function ContactUs() {
               </div>
             </motion.div>
 
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} className="bg-white/5 backdrop-blur-[12px] border border-white/[0.1] rounded-2xl p-6">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-5 h-5 text-[#34D399]" />
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} className="glass-panel p-8 border border-white/5 bg-white/[0.02]">
+              <div className="flex items-start gap-5">
+                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                  <Mail className="w-6 h-6 text-[#10B981]" />
                 </div>
                 <div>
-                  <h4 className="text-gray-900 font-semibold text-sm mb-1">
+                  <h4 className="text-white font-display font-semibold text-lg mb-2">
                     Email
                   </h4>
                   <a
                     href="mailto:hello@projextly.com"
-                    className="text-gray-600 text-sm hover:text-[#34D399] transition-colors"
+                    className="text-slate-400 text-base hover:text-[#10B981] transition-colors"
                   >
                     hello@projextly.com
                   </a>
@@ -74,34 +58,23 @@ export default function ContactUs() {
               </div>
             </motion.div>
 
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} className="bg-white/5 backdrop-blur-[12px] border border-white/[0.1] rounded-2xl p-6">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-5 h-5 text-[#34D399]" />
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} className="glass-panel p-8 border border-white/5 bg-white/[0.02]">
+              <div className="flex items-start gap-5">
+                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                  <Phone className="w-6 h-6 text-[#10B981]" />
                 </div>
                 <div>
-                  <h4 className="text-gray-900 font-semibold text-sm mb-1">
+                  <h4 className="text-white font-display font-semibold text-lg mb-2">
                     Phone
                   </h4>
                   <a
                     href="tel:+919876543210"
-                    className="text-gray-600 text-sm hover:text-[#34D399] transition-colors"
+                    className="text-slate-400 text-base hover:text-[#10B981] transition-colors"
                   >
                     +91 98765 43210
                   </a>
                 </div>
               </div>
-            </motion.div>
-
-            {/* Availability badge */}
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} className="flex items-center gap-3 mt-4">
-              <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#34D399] opacity-75" />
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-[#34D399]" />
-              </span>
-              <span className="text-gray-600 text-sm">
-                Available for new projects
-              </span>
             </motion.div>
           </motion.div>
 
@@ -113,25 +86,23 @@ export default function ContactUs() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-3"
           >
-            <div className="bg-white/5 backdrop-blur-[12px] border border-white/[0.1] rounded-2xl p-8">
+            <div className="glass-panel p-8 sm:p-12 border border-white/10 bg-black/40">
               {submitted ? (
-                <div className="text-center py-12">
-                  <div className="w-16 h-16 rounded-full bg-emerald-50 flex items-center justify-center mx-auto mb-4">
-                    <Send className="w-8 h-8 text-[#34D399]" />
+                <div className="text-center py-16">
+                  <div className="w-20 h-20 rounded-full bg-[#10B981]/10 flex items-center justify-center mx-auto mb-6 border border-[#10B981]/30">
+                    <Send className="w-10 h-10 text-[#10B981]" />
                   </div>
-                  <h3 className="text-gray-900 font-bold text-xl mb-2">
-                    Message Sent!
+                  <h3 className="text-white font-display font-bold text-3xl mb-4">
+                    Transmission Successful
                   </h3>
-                  <p className="text-gray-600 text-sm">
-                    Thank you for reaching out. We&apos;ll get back to you within 24
-                    hours.
+                  <p className="text-slate-400 text-lg">
+                    Thank you for reaching out. Our team will review your inquiry and get back to you shortly.
                   </p>
                 </div>
               ) : (
                   <form
                     onSubmit={async (e) => {
                       e.preventDefault();
-                      
                       const formData = new FormData(e.currentTarget);
                       const data = {
                         name: formData.get("name"),
@@ -147,7 +118,6 @@ export default function ContactUs() {
                           headers: { "Content-Type": "application/json" },
                           body: JSON.stringify(data),
                         });
-                        
                         if (res.ok) {
                           setSubmitted(true);
                         }
@@ -155,11 +125,11 @@ export default function ContactUs() {
                         console.error("Failed to submit form:", error);
                       }
                     }}
-                    className="space-y-5"
+                    className="space-y-6"
                   >
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <div>
-                        <label htmlFor="contact-name" className="block text-gray-700 text-sm font-medium mb-2">
+                        <label htmlFor="contact-name" className="block text-slate-300 text-sm font-medium mb-2">
                           Your Name
                         </label>
                         <input
@@ -167,13 +137,12 @@ export default function ContactUs() {
                           name="name"
                           type="text"
                           required
-                          aria-required="true"
                           placeholder="John Doe"
-                          className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm placeholder:text-gray-400 focus:outline-none focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399]/20 transition-all"
+                          className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white placeholder:text-slate-500 focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981]/50 transition-all"
                         />
                       </div>
                       <div>
-                        <label htmlFor="contact-email" className="block text-gray-700 text-sm font-medium mb-2">
+                        <label htmlFor="contact-email" className="block text-slate-300 text-sm font-medium mb-2">
                           Email Address
                         </label>
                         <input
@@ -181,63 +150,63 @@ export default function ContactUs() {
                           name="email"
                           type="email"
                           required
-                          aria-required="true"
                           placeholder="john@example.com"
-                          className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm placeholder:text-gray-400 focus:outline-none focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399]/20 transition-all"
+                          className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white placeholder:text-slate-500 focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981]/50 transition-all"
                         />
                       </div>
                     </div>
 
-                    <div>
-                      <label htmlFor="contact-project-type" className="block text-gray-700 text-sm font-medium mb-2">
-                        Project Type
-                      </label>
-                      <select id="contact-project-type" name="projectType" className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm focus:outline-none focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399]/20 transition-all appearance-none cursor-pointer">
-                        <option value="">Select a service</option>
-                        <option value="web">Website Development</option>
-                        <option value="app">Web Application</option>
-                        <option value="ecommerce">E-Commerce Store</option>
-                        <option value="design">UI/UX Design</option>
-                        <option value="seo">SEO & Performance</option>
-                        <option value="other">Other</option>
-                      </select>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div>
+                        <label htmlFor="contact-project-type" className="block text-slate-300 text-sm font-medium mb-2">
+                          Project Type
+                        </label>
+                        <select id="contact-project-type" name="projectType" className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981]/50 transition-all appearance-none cursor-pointer">
+                          <option value="" className="bg-slate-900">Select a service</option>
+                          <option value="web" className="bg-slate-900">Website Development</option>
+                          <option value="app" className="bg-slate-900">Web Application</option>
+                          <option value="ecommerce" className="bg-slate-900">E-Commerce Store</option>
+                          <option value="design" className="bg-slate-900">UI/UX Design</option>
+                          <option value="seo" className="bg-slate-900">SEO & Performance</option>
+                          <option value="other" className="bg-slate-900">Other</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label htmlFor="contact-budget" className="block text-slate-300 text-sm font-medium mb-2">
+                          Budget Range
+                        </label>
+                        <select id="contact-budget" name="budget" className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981]/50 transition-all appearance-none cursor-pointer">
+                          <option value="" className="bg-slate-900">Select budget range</option>
+                          <option value="10k-25k" className="bg-slate-900">₹10,000 – ₹25,000</option>
+                          <option value="25k-50k" className="bg-slate-900">₹25,000 – ₹50,000</option>
+                          <option value="50k-1L" className="bg-slate-900">₹50,000 – ₹1,00,000</option>
+                          <option value="1L-5L" className="bg-slate-900">₹1,00,000 – ₹5,00,000</option>
+                          <option value="5L+" className="bg-slate-900">₹5,00,000+</option>
+                        </select>
+                      </div>
                     </div>
 
                     <div>
-                      <label htmlFor="contact-budget" className="block text-gray-700 text-sm font-medium mb-2">
-                        Budget Range
-                      </label>
-                      <select id="contact-budget" name="budget" className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm focus:outline-none focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399]/20 transition-all appearance-none cursor-pointer">
-                        <option value="">Select budget range</option>
-                        <option value="10k-25k">₹10,000 – ₹25,000</option>
-                        <option value="25k-50k">₹25,000 – ₹50,000</option>
-                        <option value="50k-1L">₹50,000 – ₹1,00,000</option>
-                        <option value="1L-5L">₹1,00,000 – ₹5,00,000</option>
-                        <option value="5L+">₹5,00,000+</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label htmlFor="contact-message" className="block text-gray-700 text-sm font-medium mb-2">
-                        Tell Us About Your Project
+                      <label htmlFor="contact-message" className="block text-slate-300 text-sm font-medium mb-2">
+                        Project Details
                       </label>
                       <textarea
                         id="contact-message"
                         name="message"
-                        rows={4}
+                        rows={5}
                         required
-                        aria-required="true"
-                        placeholder="Describe your project, goals, and timeline..."
-                        className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm placeholder:text-gray-400 focus:outline-none focus:border-[#34D399] focus:ring-1 focus:ring-[#34D399]/20 transition-all resize-none"
+                        placeholder="Tell us about your vision..."
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white placeholder:text-slate-500 focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981]/50 transition-all resize-none"
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="bg-[#34D399] text-white hover:bg-[#059669] transition-colors w-full py-4 rounded-xl text-sm flex items-center justify-center gap-2"
+                      className="magnetic-btn w-full bg-[#10B981] text-black font-bold py-4 rounded-xl text-lg flex items-center justify-center gap-3 hover:bg-emerald-400 transition-colors shadow-[0_0_30px_rgba(16,185,129,0.3)]"
                     >
-                      <Send className="w-4 h-4" />
-                      Send Message
+                      <Send className="w-5 h-5" />
+                      Initialize Project
                     </button>
                   </form>
               )}
