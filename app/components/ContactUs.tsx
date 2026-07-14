@@ -68,10 +68,10 @@ export default function ContactUs() {
                     Phone
                   </h4>
                   <a
-                    href="tel:+919876543210"
+                    href="tel:+918618045456"
                     className="text-slate-400 text-base hover:text-[#10B981] transition-colors"
                   >
-                    +91 98765 43210
+                    +91 8618045456
                   </a>
                 </div>
               </div>
