@@ -46,7 +46,7 @@ export default function FinalCTA() {
             <ArrowRight className="w-5 h-5" />
           </a>
           <a
-            href="tel:+919876543210"
+            href="tel:+918618045456"
             className="btn-outline flex items-center gap-2 text-base"
           >
             <Phone className="w-4 h-4" />
