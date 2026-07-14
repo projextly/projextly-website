@@ -59,7 +59,7 @@ const localBusinessJsonLd = {
   image: "https://projextly.com/projextly-logo.png",
   description:
     "Projextly is a premium web design company in Bangalore, India. We design and build high-converting, responsive, SEO-friendly websites for startups, SMEs, healthcare, education, ecommerce, and SaaS companies.",
-  telephone: "+919876543210",
+  telephone: "+918618045456",
   email: "hello@projextly.com",
   address: {
     "@type": "PostalAddress",
